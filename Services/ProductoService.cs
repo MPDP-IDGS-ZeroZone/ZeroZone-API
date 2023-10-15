@@ -13,9 +13,35 @@ public class ProductoService
         _context = context;
     }
 
-    public IEnumerable<Producto> Get()
+    public IEnumerable<Producto> Get(int Id = 0, string Categoria = "", int SocioID = 0, string Nombre = "", bool DisponibleOnly = false)
     {
-        var producto = _context.Productos.Where(producto => producto.Statusp == "Disponible");
+        var producto = _context.Productos.Select(producto => producto);
+        
+        if(Id != 0)
+        {
+            producto = producto.Where(producto => producto.Idproducto == Id);
+        }
+        
+        if(Categoria != "")
+        {
+            producto = producto.Where(producto => producto.Categoria == Categoria);
+        }
+        
+        if(SocioID != 0)
+        {
+            producto = producto.Where(producto => producto.Idusuariosocio == SocioID);
+        }
+        
+        if(Nombre != "")
+        {
+            producto = producto.Where(producto => producto.Nombre.StartsWith(Nombre)).OrderBy(producto => producto.Nombre);
+        }
+        
+        if(DisponibleOnly)
+        {
+            producto = producto.Where(producto => producto.Statusp == "Disponible");
+        }
+        
         return producto;
     }
 

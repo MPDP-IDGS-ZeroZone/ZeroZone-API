@@ -17,57 +17,9 @@ namespace ApiTienda.Controllers
 
         [HttpGet]
         [Route("")]
-        public ActionResult<IEnumerable<Producto>> Get()
+        public ActionResult<IEnumerable<Producto>> Get(int Id = 0, string Categoria = "", int SocioID = 0, string Nombre = "", bool DisponibleOnly = false)
         {
-            var producto = _service.Get();
-            
-            if (producto is null){
-                return NotFound();
-            }
-            return Ok(producto);
-        }
-
-        [HttpGet]
-        [Route("ById")]
-        public ActionResult<Producto> GetById(int Id)
-        {
-            var producto = _service.GetById(Id);
-            
-            if (producto is null){
-                return NotFound();
-            }
-            return Ok(producto);
-        }
-
-        [HttpGet]
-        [Route("ByCategory")]
-        public ActionResult<Producto> GetByCategory(string Categoria)
-        {
-            var producto = _service.GetByCategory(Categoria);
-            
-            if (producto is null){
-                return NotFound();
-            }
-            return Ok(producto);
-        }
-
-        [HttpGet]
-        [Route("BySocio")]
-        public ActionResult<Producto> GetBySocio(int SocioID)
-        {
-            var producto = _service.GetBySocio(SocioID);
-            
-            if (producto is null){
-                return NotFound();
-            }
-            return Ok(producto);
-        }
-
-        [HttpGet]
-        [Route("SearchByNombre")]
-        public ActionResult<Producto> SearchByNombre(string Nombre)
-        {
-            var producto = _service.SearchByNombre(Nombre);
+            var producto = _service.Get(Id, Categoria, SocioID, Nombre, DisponibleOnly);
             
             if (producto is null){
                 return NotFound();
@@ -79,7 +31,7 @@ namespace ApiTienda.Controllers
         public IActionResult Create(ProductoRequest producto)
         {
             var newProducto = _service.Create(producto);
-            return CreatedAtAction(nameof(GetById), new {Id = newProducto.Idproducto}, newProducto);
+            return CreatedAtAction(nameof(Get), new {Id = newProducto.Idproducto}, newProducto);
         }
 
         [HttpPut]
