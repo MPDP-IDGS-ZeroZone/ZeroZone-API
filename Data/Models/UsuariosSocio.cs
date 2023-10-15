@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace ApiTienda.Data.Models;
 
@@ -15,7 +16,9 @@ public partial class UsuariosSocio
 
     public int Idsocio { get; set; }
 
+    [JsonIgnore]
     public virtual Socio IdsocioNavigation { get; set; } = null!;
 
+    [JsonIgnore]
     public virtual ICollection<Producto> Productos { get; set; } = new List<Producto>();
 }

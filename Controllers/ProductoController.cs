@@ -17,7 +17,7 @@ namespace ApiTienda.Controllers
 
         [HttpGet]
         [Route("")]
-        public ActionResult<IEnumerable<Producto>> Get(int Id = 0, string Categoria = "", int SocioID = 0, string Nombre = "", bool DisponibleOnly = false)
+        public ActionResult<IEnumerable<Producto>> Get(int Id = 0, int Categoria = 0, int SocioID = 0, string Nombre = "", bool DisponibleOnly = false)
         {
             var producto = _service.Get(Id, Categoria, SocioID, Nombre, DisponibleOnly);
             
@@ -41,7 +41,7 @@ namespace ApiTienda.Controllers
             {
                 return BadRequest();
             }
-            var ProductoToUpdate = _service.GetById(Id).First();
+            var ProductoToUpdate = _service.Get(Id).First();
 
             if(ProductoToUpdate is not null)
             {
@@ -57,7 +57,7 @@ namespace ApiTienda.Controllers
         [HttpDelete]
         public IActionResult Delete(int Id)
         {
-            var ProductoToDelete = _service.GetById(Id).First();
+            var ProductoToDelete = _service.Get(Id).First();
 
             if(ProductoToDelete is not null)
             {

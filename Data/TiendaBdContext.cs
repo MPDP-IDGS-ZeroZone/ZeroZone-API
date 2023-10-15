@@ -16,6 +16,10 @@ public partial class TiendaBdContext : DbContext
     {
     }
 
+    public virtual DbSet<Categoria> Categorias { get; set; }
+
+    public virtual DbSet<Oferta> Ofertas { get; set; }
+
     public virtual DbSet<Producto> Productos { get; set; }
 
     public virtual DbSet<Socio> Socios { get; set; }
@@ -24,17 +28,57 @@ public partial class TiendaBdContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Categoria>(entity =>
+        {
+            entity.HasKey(e => e.Idcategoria).HasName("PK__Categori__140587C798EB184C");
+
+            entity.Property(e => e.Idcategoria).HasColumnName("idcategoria");
+            entity.Property(e => e.Foto)
+                .HasMaxLength(500)
+                .HasColumnName("foto");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(70)
+                .HasColumnName("nombre");
+        });
+
+        modelBuilder.Entity<Oferta>(entity =>
+        {
+            entity.HasKey(e => e.Idoferta).HasName("PK__Ofertas__A8E3A62A80BDCEC7");
+
+            entity.Property(e => e.Idoferta).HasColumnName("idoferta");
+            entity.Property(e => e.Estatus)
+                .HasMaxLength(70)
+                .HasColumnName("estatus");
+            entity.Property(e => e.Fechacierre)
+                .HasColumnType("date")
+                .HasColumnName("fechacierre");
+            entity.Property(e => e.Fechainicio)
+                .HasColumnType("date")
+                .HasColumnName("fechainicio");
+            entity.Property(e => e.Idproducto).HasColumnName("idproducto");
+            entity.Property(e => e.Porcentaje).HasColumnName("porcentaje");
+
+            entity.HasOne(d => d.IdproductoNavigation).WithMany(p => p.Oferta)
+                .HasForeignKey(d => d.Idproducto)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Ofertas__idprodu__0F624AF8");
+        });
+
         modelBuilder.Entity<Producto>(entity =>
         {
-            entity.HasKey(e => e.Idproducto).HasName("PK__Producto__DC53BE3C805DF4F3");
+            entity.HasKey(e => e.Idproducto).HasName("PK__Producto__DC53BE3C55C4E50A");
 
             entity.Property(e => e.Idproducto).HasColumnName("idproducto");
-            entity.Property(e => e.Categoria)
-                .HasMaxLength(70)
-                .HasColumnName("categoria");
             entity.Property(e => e.Descripcion)
                 .HasMaxLength(200)
                 .HasColumnName("descripcion");
+            entity.Property(e => e.FechaCreacion)
+                .HasColumnType("date")
+                .HasColumnName("fecha_creacion");
+            entity.Property(e => e.Foto)
+                .HasMaxLength(500)
+                .HasColumnName("foto");
+            entity.Property(e => e.Idcategoria).HasColumnName("idcategoria");
             entity.Property(e => e.Idusuariosocio).HasColumnName("idusuariosocio");
             entity.Property(e => e.Nombre)
                 .HasMaxLength(70)
@@ -46,11 +90,19 @@ public partial class TiendaBdContext : DbContext
                 .HasMaxLength(70)
                 .HasColumnName("statusp");
             entity.Property(e => e.Stock).HasColumnName("stock");
+            entity.Property(e => e.Tipo)
+                .HasMaxLength(70)
+                .HasColumnName("tipo");
+
+            entity.HasOne(d => d.IdcategoriaNavigation).WithMany(p => p.Productos)
+                .HasForeignKey(d => d.Idcategoria)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Productos__idcat__0B91BA14");
 
             entity.HasOne(d => d.IdusuariosocioNavigation).WithMany(p => p.Productos)
                 .HasForeignKey(d => d.Idusuariosocio)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Productos__idusu__619B8048");
+                .HasConstraintName("FK__Productos__idusu__0C85DE4D");
         });
 
         modelBuilder.Entity<Socio>(entity =>

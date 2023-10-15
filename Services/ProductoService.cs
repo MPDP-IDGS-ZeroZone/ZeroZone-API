@@ -1,7 +1,7 @@
 using ApiTienda.Data;
 using ApiTienda.Data.Models;
 using ApiTienda.Request;
-
+using ApiTienda.Response;
 namespace ApiTienda.Services;
 
 public class ProductoService
@@ -13,18 +13,18 @@ public class ProductoService
         _context = context;
     }
 
-    public IEnumerable<Producto> Get(int Id = 0, string Categoria = "", int SocioID = 0, string Nombre = "", bool DisponibleOnly = false)
+    public IEnumerable<ProductoResponse> Get(int Id = 0, int Categoria = 0, int SocioID = 0, string Nombre = "", bool DisponibleOnly = false)
     {
-        var producto = _context.Productos.Select(producto => producto);
+        IEnumerable<Producto> producto = _context.Productos.Select(producto => producto);
         
         if(Id != 0)
         {
             producto = producto.Where(producto => producto.Idproducto == Id);
         }
         
-        if(Categoria != "")
+        if(Categoria != 0)
         {
-            producto = producto.Where(producto => producto.Categoria == Categoria);
+            producto = producto.Where(producto => producto.Idcategoria == Categoria);
         }
         
         if(SocioID != 0)
@@ -41,45 +41,62 @@ public class ProductoService
         {
             producto = producto.Where(producto => producto.Statusp == "Disponible");
         }
+
+        List<ProductoResponse> response = new List<ProductoResponse>();
         
-        return producto;
-    }
+        var categorias = _context.Categorias.ToList();
+        var usuariosSocios = _context.UsuariosSocios.ToList();
+        var socios = _context.Socios.ToList();
+        var ofertas = _context.Ofertas.Where(Oferta => Oferta.Estatus == "Activa" && Oferta.Fechainicio <= DateTime.Now && Oferta.Fechacierre >= DateTime.Now).ToList();
 
-    public IEnumerable<Producto> GetById(int id)
-    {
-        var producto = _context.Productos.Where(producto => producto.Idproducto == id && producto.Statusp == "Disponible");
-        return producto;
-    }
+        foreach(Producto p in producto)
+        {
+            ProductoResponse newProducto = new ProductoResponse();
+            var categoria = categorias.First(Categoria => Categoria.Idcategoria == p.Idcategoria);
+            var usuariosSocio = usuariosSocios.First(usuariosSocio => usuariosSocio.Idusuariosocio == p.Idusuariosocio);
+            var socio = socios.First(socio => socio.Idsocio == usuariosSocio.Idsocio);
+            var oferta = ofertas.Where(Oferta => Oferta.Idproducto == p.Idproducto);
 
-    public IEnumerable<Producto> GetByCategory(string categoria)
-    {
-        var producto = _context.Productos.Where(producto => producto.Categoria == categoria && producto.Statusp == "Disponible");
-        return producto;
-    }
+            newProducto.Idproducto = p.Idproducto;
+            newProducto.Idusuariosocio = p.Idusuariosocio;
+            newProducto.Socio = socio;
+            newProducto.Nombre = p.Nombre;
+            newProducto.Descripcion = p.Descripcion;
+            newProducto.Precio = p.Precio;
+            newProducto.Foto = p.Foto;
+            newProducto.FechaCreacion = p.FechaCreacion;
+            newProducto.Categoria = categoria;
+            newProducto.Tipo = p.Tipo;
+            newProducto.Stock = p.Stock;
+            newProducto.Statusp = p.Statusp;
+            newProducto.Oferta = oferta;
 
-    public IEnumerable<Producto> GetBySocio(int SocioID)
-    {
-        var producto = _context.Productos.Where(producto => producto.Idusuariosocio == SocioID);
-        return producto;
-    }
+            response.Add(newProducto);
+        };
 
-    public IEnumerable<Producto> SearchByNombre(string Nombre)
-    {
-        var producto = _context.Productos.Where(producto => producto.Nombre.StartsWith(Nombre) && producto.Statusp == "Disponible").OrderBy(producto => producto.Nombre);
-        return producto;
+        return response;
     }
     
+    public Producto GetById(int Id)
+    {
+        var producto = _context.Productos.Where(producto => producto.Idproducto == Id).First();
+        return producto;
+    }
+
     public Producto Create(ProductoRequest newProducto)
     {
         Producto producto = new Producto();
-        producto.Nombre = newProducto.Nombre;
-        producto.Precio = newProducto.Precio;
-        producto.Descripcion = newProducto.Descripcion;
-        producto.Stock = newProducto.Stock;
-        producto.Categoria = newProducto.Categoria;
-        producto.Statusp = newProducto.Statusp;
         producto.Idusuariosocio = newProducto.Idusuariosocio;
-
+        producto.Nombre = newProducto.Nombre;
+        producto.Descripcion = newProducto.Descripcion;
+        producto.Precio = newProducto.Precio;
+        producto.Foto = newProducto.Foto;
+        producto.FechaCreacion = newProducto.FechaCreacion;
+        producto.Idcategoria = newProducto.IdCategoria;
+        producto.Tipo = newProducto.Tipo;
+        producto.Stock = newProducto.Stock;
+        producto.Statusp = newProducto.Statusp;
+        
         _context.Productos.Add(producto);
         _context.SaveChanges();
 
@@ -88,15 +105,19 @@ public class ProductoService
 
     public void Update(int Id, ProductoRequest producto)
     {
-        var existingProducto = GetById(Id).First();
+        var existingProducto = GetById(Id);
 
         if (existingProducto is not null)
         {
+            existingProducto.Idusuariosocio = producto.Idusuariosocio;
             existingProducto.Nombre = producto.Nombre;
-            existingProducto.Precio = producto.Precio;
             existingProducto.Descripcion = producto.Descripcion;
+            existingProducto.Precio = producto.Precio;
+            existingProducto.Foto = producto.Foto;
+            existingProducto.FechaCreacion = producto.FechaCreacion;
+            existingProducto.Idcategoria = producto.IdCategoria;
+            existingProducto.Tipo = producto.Tipo;
             existingProducto.Stock = producto.Stock;
-            existingProducto.Categoria = producto.Categoria;
             existingProducto.Statusp = producto.Statusp;
 
             _context.SaveChanges();
@@ -105,7 +126,7 @@ public class ProductoService
 
     public void Delete(int id)
     {
-        var ProductoToDelete = GetById(id).First();
+        var ProductoToDelete = GetById(id);
 
         if (ProductoToDelete is not null)
         {
