@@ -1,4 +1,5 @@
 using ApiTienda.Data;
+using ApiTienda.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,10 @@ builder.Services.AddSwaggerGen();
 
 //DbContext
 builder.Services.AddSqlServer<TiendaBdContext>(builder.Configuration.GetConnectionString("TiendaConnection"));
+
+//Servie layer
+builder.Services.AddScoped<ProductoService>();
+
 
 var app = builder.Build();
 
