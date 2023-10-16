@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using ApiTienda.Data;
 using ApiTienda.Data.Models;
 
-namespace ApiTienda.Response
+namespace ApiTienda.Data.Response
 {
     public class ProductoResponse
     {

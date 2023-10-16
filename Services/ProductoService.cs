@@ -1,7 +1,7 @@
 using ApiTienda.Data;
 using ApiTienda.Data.Models;
-using ApiTienda.Request;
-using ApiTienda.Response;
+using ApiTienda.Data.Request;
+using ApiTienda.Data.Response;
 namespace ApiTienda.Services;
 
 public class ProductoService

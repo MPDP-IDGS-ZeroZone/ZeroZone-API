@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ApiTienda.Services;
 using ApiTienda.Data.Models;
-using ApiTienda.Request;
+using ApiTienda.Data.Request;
 
 namespace ApiTienda.Controllers
 {
