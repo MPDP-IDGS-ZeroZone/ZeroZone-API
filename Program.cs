@@ -15,6 +15,8 @@ builder.Services.AddSqlServer<TiendaBdContext>(builder.Configuration.GetConnecti
 
 //Servie layer
 builder.Services.AddScoped<ProductoService>();
+builder.Services.AddScoped<OfertaService>();
+builder.Services.AddScoped<CategoriaService>();
 
 
 var app = builder.Build();
