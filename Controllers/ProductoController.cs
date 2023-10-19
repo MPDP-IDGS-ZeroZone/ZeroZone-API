@@ -17,9 +17,9 @@ namespace ApiTienda.Controllers
 
         [HttpGet]
         [Route("")]
-        public ActionResult<IEnumerable<Producto>> Get(int Id = 0, int Categoria = 0, int SocioID = 0, string Nombre = "", bool DisponibleOnly = false)
+        public ActionResult<IEnumerable<Producto>> Get(int Id = 0, int Categoria = 0, int SocioID = 0, string Nombre = "", string Statusp = "")
         {
-            var producto = _service.Get(Id, Categoria, SocioID, Nombre, DisponibleOnly);
+            var producto = _service.Get(Id, Categoria, SocioID, Nombre, Statusp);
             
             if (producto is null){
                 return NotFound();

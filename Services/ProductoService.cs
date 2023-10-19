@@ -13,7 +13,7 @@ public class ProductoService
         _context = context;
     }
 
-    public IEnumerable<ProductoResponse> Get(int Id = 0, int Categoria = 0, int SocioID = 0, string Nombre = "", bool DisponibleOnly = false)
+    public IEnumerable<ProductoResponse> Get(int Id = 0, int Categoria = 0, int SocioID = 0, string Nombre = "", string Statusp = "")
     {
         IEnumerable<Producto> producto = _context.Productos.Select(producto => producto);
         
@@ -37,9 +37,9 @@ public class ProductoService
             producto = producto.Where(producto => producto.Nombre.StartsWith(Nombre)).OrderBy(producto => producto.Nombre);
         }
         
-        if(DisponibleOnly)
+        if(Statusp != "")
         {
-            producto = producto.Where(producto => producto.Statusp == "Disponible");
+            producto = producto.Where(producto => producto.Statusp == Statusp);
         }
 
         List<ProductoResponse> response = new List<ProductoResponse>();
