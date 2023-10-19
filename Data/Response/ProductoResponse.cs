@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ApiTienda.Data;
-using ApiTienda.Data.Models;
+using TiendaApi.Data;
+using TiendaApi.Data.Models;
 
-namespace ApiTienda.Data.Response
+namespace TiendaApi.Data.Response
 {
     public class ProductoResponse
     {

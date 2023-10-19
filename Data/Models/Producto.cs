@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace ApiTienda.Data.Models;
+namespace TiendaApi.Data.Models;
 
 public partial class Producto
 {

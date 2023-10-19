@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using ApiTienda.Data;
-using ApiTienda.Data.Models;
+using TiendaApi.Data;
+using TiendaApi.Data.Models;
 
-namespace ApiTienda.Controllers
+namespace TiendaApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]

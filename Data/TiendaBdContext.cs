@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using ApiTienda.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using TiendaApi.Data.Models;
 
-namespace ApiTienda.Data;
+namespace TiendaApi.Data;
 
 public partial class TiendaBdContext : DbContext
 {

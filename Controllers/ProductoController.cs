@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using ApiTienda.Services;
-using ApiTienda.Data.Models;
-using ApiTienda.Data.Request;
+using TiendaApi.Services;
+using TiendaApi.Data.Models;
+using TiendaApi.Data.Request;
 
-namespace ApiTienda.Controllers
+namespace TiendaApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -17,7 +17,7 @@ namespace ApiTienda.Controllers
 
         [HttpGet]
         [Route("")]
-        public ActionResult<IEnumerable<Producto>> Get(int Id = 0, int Categoria = 0, int SocioID = 0, string Nombre = "", string Statusp = "")
+        public ActionResult<IEnumerable<Producto>> Get(int Id = 0, int Categoria = 0, int SocioID = 0, string? Nombre = "", string? Statusp = "")
         {
             var producto = _service.Get(Id, Categoria, SocioID, Nombre, Statusp);
             

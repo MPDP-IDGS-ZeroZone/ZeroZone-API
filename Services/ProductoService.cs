@@ -1,8 +1,8 @@
-using ApiTienda.Data;
-using ApiTienda.Data.Models;
-using ApiTienda.Data.Request;
-using ApiTienda.Data.Response;
-namespace ApiTienda.Services;
+using TiendaApi.Data;
+using TiendaApi.Data.Models;
+using TiendaApi.Data.Request;
+using TiendaApi.Data.Response;
+namespace TiendaApi.Services;
 
 public class ProductoService
 {
@@ -34,7 +34,7 @@ public class ProductoService
         
         if(Nombre != "")
         {
-            producto = producto.Where(producto => producto.Nombre.StartsWith(Nombre)).OrderBy(producto => producto.Nombre);
+            producto = producto.Where(producto => producto.Nombre.Contains(Nombre)).OrderBy(producto => producto.Nombre);
         }
         
         if(Statusp != "")

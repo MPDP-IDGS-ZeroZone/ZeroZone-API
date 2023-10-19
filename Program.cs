@@ -1,5 +1,5 @@
-using ApiTienda.Data;
-using ApiTienda.Services;
+using TiendaApi.Data;
+using TiendaApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +17,6 @@ builder.Services.AddSqlServer<TiendaBdContext>(builder.Configuration.GetConnecti
 builder.Services.AddScoped<ProductoService>();
 builder.Services.AddScoped<OfertaService>();
 builder.Services.AddScoped<CategoriaService>();
-
 
 var app = builder.Build();
 

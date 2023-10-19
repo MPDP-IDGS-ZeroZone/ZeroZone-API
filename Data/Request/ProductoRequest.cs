@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ApiTienda.Data.Request
+namespace TiendaApi.Data.Request
 {
     public class ProductoRequest
     {
