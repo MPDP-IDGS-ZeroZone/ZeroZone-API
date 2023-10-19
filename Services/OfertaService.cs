@@ -1,8 +1,8 @@
 using System;
-using TiendaApi.Data;
-using TiendaApi.Data.Models;
-using TiendaApi.Data.Request;
-namespace TiendaApi.Services;
+using ApiTienda.Data;
+using ApiTienda.Data.Models;
+using ApiTienda.Data.Request;
+namespace ApiTienda.Services;
 
 public class OfertaService
 {

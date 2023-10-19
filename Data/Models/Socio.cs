@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace TiendaApi.Data.Models;
+namespace ApiTienda.Data.Models;
 
 public partial class Socio
 {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace TiendaApi.Data.Request;
+namespace ApiTienda.Data.Request;
 
 public partial class CategoriaRequest
 {

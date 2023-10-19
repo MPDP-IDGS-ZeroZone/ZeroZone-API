@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tuU3r+EeLwss3/hkQ4cFT2MwtOBvSIQwjx1UjlRgFABxSULjf4HvJns9a4ze+E0mRRffXJwg3+Gud3vsnYdlDQ==",
+  "dgSpecHash": "tU34v9nJlgEco7Z4emx99UREIs3+YMNu377W9EsQ8/JKMcCIi8po09hXPwPXeauH/LIPb9/qTtxATFSDQizdXw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Daniel\\Desktop\\Univercidad\\Programacion\\ZeroZone-Api\\TiendaApi.csproj",
+  "projectFilePath": "c:\\Users\\Daniel\\Desktop\\Univercidad\\Programacion\\ZeroZone-Api\\ApiTienda.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Daniel\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Daniel\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
