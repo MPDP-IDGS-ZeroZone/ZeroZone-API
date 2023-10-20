@@ -1,32 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Daniel\\Desktop\\Univercidad\\Programacion\\ZeroZone-Api\\ApiTienda.csproj": {}
+    "c:\\Users\\Daniel\\Desktop\\Univercidad\\Programacion\\ZeroZone-Api\\ApiTienda.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Daniel\\Desktop\\Univercidad\\Programacion\\ZeroZone-Api\\ApiTienda.csproj": {
+    "c:\\Users\\Daniel\\Desktop\\Univercidad\\Programacion\\ZeroZone-Api\\ApiTienda.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Daniel\\Desktop\\Univercidad\\Programacion\\ZeroZone-Api\\ApiTienda.csproj",
+        "projectUniqueName": "c:\\Users\\Daniel\\Desktop\\Univercidad\\Programacion\\ZeroZone-Api\\ApiTienda.csproj",
         "projectName": "ApiTienda",
-        "projectPath": "C:\\Users\\Daniel\\Desktop\\Univercidad\\Programacion\\ZeroZone-Api\\ApiTienda.csproj",
+        "projectPath": "c:\\Users\\Daniel\\Desktop\\Univercidad\\Programacion\\ZeroZone-Api\\ApiTienda.csproj",
         "packagesPath": "C:\\Users\\Daniel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Daniel\\Desktop\\Univercidad\\Programacion\\ZeroZone-Api\\obj\\",
+        "outputPath": "c:\\Users\\Daniel\\Desktop\\Univercidad\\Programacion\\ZeroZone-Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Daniel\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "net7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
+          "net7.0": {
+            "targetAlias": "net7.0",
             "projectReferences": {}
           }
         },
@@ -37,24 +37,46 @@
         }
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net7.0": {
+          "targetAlias": "net7.0",
           "dependencies": {
-            "Microsoft.EntityFrameworkCore.Analyzers": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[7.0.12, )"
+            },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[7.0.11, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[7.0.12, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[7.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.12, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
             },
             "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "Swashbuckle.AspNetCore.Filters": {
+              "target": "Package",
+              "version": "[7.0.11, )"
+            },
+            "Swashbuckle.AspNetCore.Swagger": {
               "target": "Package",
               "version": "[6.5.0, )"
             }

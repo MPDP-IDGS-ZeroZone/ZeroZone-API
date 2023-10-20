@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using ApiTienda.Services;
 using ApiTienda.Data.Models;
 using ApiTienda.Data.Request;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApiTienda.Controllers
 {
@@ -16,8 +17,7 @@ namespace ApiTienda.Controllers
         }
 
         [HttpGet]
-        [Route("")]
-        public ActionResult<IEnumerable<Categoria>> Get(int Id = 0, string? Nombre = "")
+        public ActionResult<IEnumerable<Categoria>> Get(int Id = 0, string Nombre = "")
         {
             var Categoria = _service.Get(Id, Nombre);
             
@@ -28,6 +28,7 @@ namespace ApiTienda.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Create(CategoriaRequest Categoria)
         {
             var newCategoria = _service.Create(Categoria);
@@ -35,6 +36,7 @@ namespace ApiTienda.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public IActionResult Update(int Id, CategoriaRequest Categoria)
         {
             if(Id != Categoria.Idcategoria)
@@ -55,6 +57,7 @@ namespace ApiTienda.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         public IActionResult Delete(int Id)
         {
             var CategoriaToDelete = _service.GetById(Id);

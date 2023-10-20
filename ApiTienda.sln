@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiTienda", "ApiTienda.csproj", "{BD3332B7-204B-493E-B9D4-F97426BE22C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiTienda", "ApiTienda.csproj", "{9B34E5C6-327F-4DBC-A848-1F98C857D9E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BD3332B7-204B-493E-B9D4-F97426BE22C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BD3332B7-204B-493E-B9D4-F97426BE22C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BD3332B7-204B-493E-B9D4-F97426BE22C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BD3332B7-204B-493E-B9D4-F97426BE22C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B34E5C6-327F-4DBC-A848-1F98C857D9E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B34E5C6-327F-4DBC-A848-1F98C857D9E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B34E5C6-327F-4DBC-A848-1F98C857D9E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B34E5C6-327F-4DBC-A848-1F98C857D9E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {46803A65-DC1B-4CDB-AED4-3D4B87453341}
+		SolutionGuid = {349CC749-44D6-419A-BC54-85BCA31B925E}
 	EndGlobalSection
 EndGlobal

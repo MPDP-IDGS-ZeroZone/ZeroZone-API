@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using ApiTienda.Services;
 using ApiTienda.Data.Models;
 using ApiTienda.Data.Request;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApiTienda.Controllers
 {
@@ -16,7 +17,6 @@ namespace ApiTienda.Controllers
         }
 
         [HttpGet]
-        [Route("")]
         public ActionResult<IEnumerable<Oferta>> Get(int Id = 0, int Producto = 0, DateTime? FechaInicio = null, DateTime? FechaCierre = null, bool ActivaOnly = false)
         {
             var Oferta = _service.Get(Id,Producto, FechaInicio, FechaCierre, ActivaOnly);
@@ -28,6 +28,7 @@ namespace ApiTienda.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Create(OfertaRequest Oferta)
         {
             var newOferta = _service.Create(Oferta);
@@ -35,6 +36,7 @@ namespace ApiTienda.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public IActionResult Update(int Id, OfertaRequest Oferta)
         {
             if(Id != Oferta.Idoferta)
@@ -55,6 +57,7 @@ namespace ApiTienda.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         public IActionResult Delete(int Id)
         {
             var OfertaToDelete = _service.GetById(Id);

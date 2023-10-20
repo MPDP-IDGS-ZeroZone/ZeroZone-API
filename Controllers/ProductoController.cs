@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using ApiTienda.Services;
 using ApiTienda.Data.Models;
 using ApiTienda.Data.Request;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApiTienda.Controllers
 {
@@ -16,10 +17,9 @@ namespace ApiTienda.Controllers
         }
 
         [HttpGet]
-        [Route("")]
-        public ActionResult<IEnumerable<Producto>> Get(int Id = 0, int Categoria = 0, int SocioID = 0, string? Nombre = "", string? Statusp = "")
+        public ActionResult<IEnumerable<Producto>> Get(int Id = 0, int Categoria = 0, int SocioID = 0, string Nombre = "", bool DisponibleOnly = false)
         {
-            var producto = _service.Get(Id, Categoria, SocioID, Nombre, Statusp);
+            var producto = _service.Get(Id, Categoria, SocioID, Nombre, DisponibleOnly);
             
             if (producto is null){
                 return NotFound();
@@ -28,6 +28,7 @@ namespace ApiTienda.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Create(ProductoRequest producto)
         {
             var newProducto = _service.Create(producto);
@@ -35,6 +36,7 @@ namespace ApiTienda.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public IActionResult Update(int Id, ProductoRequest producto)
         {
             if(Id != producto.Idproducto)
@@ -55,6 +57,7 @@ namespace ApiTienda.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         public IActionResult Delete(int Id)
         {
             var ProductoToDelete = _service.Get(Id).First();
