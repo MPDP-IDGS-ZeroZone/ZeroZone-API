@@ -5,32 +5,32 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAnSkqNNdVBUa4NcD9NPmeQAAAAAACAAAAAAAQZgAAAAEAACAAAAB2L5EoXlKIaLAjlAUVJjjXbZkK67XDGyj3i+z6Xy5GKQAAAAAOgAAAAAIAACAAAAA7EfI4/9dsqS0CDewBesEYySXhP3gQ/gfjRAlDCMLj1CAAAABhR7rxlFo6HTNSMKDXjwfyYYLEVXwDJYV0e8pIzcw0FkAAAAAP5sBmBh/RBRUXTNZVOZ4d7G8EofUivdZanMH9JZVJLmhXd9zwSc3MXekoGMUDZUEr/LS+o3WeP0zKPncVnlEi</EncryptedPassword>
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAnSkqNNdVBUa4NcD9NPmeQAAAAAACAAAAAAAQZgAAAAEAACAAAADcnWdVHXzrSty/x4+rZr9ihPcytlcJsLz4xkd8nocQtQAAAAAOgAAAAAIAACAAAAB7A9dqY8tmP2+g9cvqD1GbtdJmDA4qv7AbJNId1Ri3VyAAAABrWpwe4ilZdx/CQ0JDYbQQu839KPgalx4ABJUL3WOq4kAAAAD4s5jbHhHX7j7YaUy/hGxs1SqSxrQ6bmaJnqYiWggY81p8xvu+ziLenRYI0F0tmQjf5EgNVip6e0eGjAbPA5en</EncryptedPassword>
     <_PublishTargetUrl>ftp://155.254.244.27/www.ApiTienda.somee.com</_PublishTargetUrl>
-    <History>True|2023-10-20T05:23:21.6950901Z;False|2023-10-19T23:10:35.6149475-06:00;True|2023-10-19T22:45:32.7399700-06:00;False|2023-10-19T22:12:29.5395015-06:00;False|2023-10-19T22:08:30.0492308-06:00;False|2023-10-19T22:02:48.7410387-06:00;</History>
+    <History>True|2023-10-25T03:51:14.2315291Z;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApiTienda.deps.json">
-      <publishTime>10/19/2023 23:20:27</publishTime>
+      <publishTime>10/24/2023 21:48:32</publishTime>
     </File>
     <File Include="ApiTienda.dll">
-      <publishTime>10/19/2023 23:20:26</publishTime>
+      <publishTime>10/24/2023 21:48:28</publishTime>
     </File>
     <File Include="ApiTienda.exe">
-      <publishTime>10/19/2023 23:20:26</publishTime>
+      <publishTime>10/24/2023 21:48:28</publishTime>
     </File>
     <File Include="ApiTienda.pdb">
-      <publishTime>10/19/2023 23:20:26</publishTime>
+      <publishTime>10/24/2023 21:48:28</publishTime>
     </File>
     <File Include="ApiTienda.runtimeconfig.json">
-      <publishTime>10/19/2023 22:00:32</publishTime>
+      <publishTime>10/24/2023 21:39:51</publishTime>
     </File>
     <File Include="appsettings.Development.json">
       <publishTime>10/15/2023 19:56:50</publishTime>
     </File>
     <File Include="appsettings.json">
-      <publishTime>10/19/2023 00:36:14</publishTime>
+      <publishTime>10/19/2023 00:36:16</publishTime>
     </File>
     <File Include="Azure.Core.dll">
       <publishTime>06/30/2022 13:28:36</publishTime>
@@ -97,6 +97,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="Microsoft.Win32.SystemEvents.dll">
       <publishTime>10/22/2021 17:40:24</publishTime>
+    </File>
+    <File Include="Newtonsoft.Json.Bson.dll">
+      <publishTime>11/27/2018 17:10:18</publishTime>
     </File>
     <File Include="Newtonsoft.Json.dll">
       <publishTime>03/08/2023 01:09:54</publishTime>
@@ -167,6 +170,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="System.Memory.Data.dll">
       <publishTime>04/08/2021 10:45:54</publishTime>
     </File>
+    <File Include="System.Net.Http.Formatting.dll">
+      <publishTime>10/20/2023 14:33:52</publishTime>
+    </File>
     <File Include="System.Runtime.Caching.dll">
       <publishTime>10/22/2021 17:52:02</publishTime>
     </File>
@@ -176,11 +182,20 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="System.Security.Permissions.dll">
       <publishTime>10/22/2021 17:49:50</publishTime>
     </File>
+    <File Include="System.Web.Cors.dll">
+      <publishTime>10/20/2023 14:33:50</publishTime>
+    </File>
+    <File Include="System.Web.Http.Cors.dll">
+      <publishTime>10/20/2023 14:34:12</publishTime>
+    </File>
+    <File Include="System.Web.Http.dll">
+      <publishTime>10/20/2023 14:34:06</publishTime>
+    </File>
     <File Include="System.Windows.Extensions.dll">
       <publishTime>10/22/2021 17:49:44</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>10/19/2023 23:20:27</publishTime>
+      <publishTime>10/24/2023 21:48:33</publishTime>
     </File>
   </ItemGroup>
 </Project>
