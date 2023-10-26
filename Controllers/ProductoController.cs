@@ -3,13 +3,11 @@ using ApiTienda.Services;
 using ApiTienda.Data.Models;
 using ApiTienda.Data.Request;
 using Microsoft.AspNetCore.Authorization;
-using System.Web.Http.Cors;
 
 namespace ApiTienda.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [DisableCors]
     public class ProductoController : Controller
     {
         private readonly ProductoService _service;

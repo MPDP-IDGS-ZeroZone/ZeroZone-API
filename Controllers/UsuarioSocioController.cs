@@ -3,13 +3,11 @@ using ApiTienda.Data;
 using ApiTienda.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
-using System.Web.Http.Cors;
 
 namespace ApiTienda.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [DisableCors]
     public class UsuarioSocioController : Controller
     {
         private readonly TiendaBdContext _context;

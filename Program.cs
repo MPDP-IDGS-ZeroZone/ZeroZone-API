@@ -9,8 +9,17 @@ using TiendaAPI.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+var MyOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyOrigins,
+                      policy  =>
+                      {
+                          policy.WithOrigins("*");
+                      });
+});
 
+// Add services to the container.
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -62,6 +71,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+//cords
+app.UseCors(MyOrigins);
 
 //app.UseHttpsRedirection();
 app.UseAuthentication();

@@ -5,13 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TiendaAPI.Data;
 using TiendaAPI.Data.Models;
-using System.Web.Http.Cors;
 
 namespace TiendaAPI.Controllers
 {
     [ApiController]
     [Route("Login")]
-    [DisableCors]
     public class AuthController : ControllerBase
 {
     private readonly Auth _auth;
