@@ -9,7 +9,7 @@ namespace ApiTienda.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [DisableCors]
     public class SocioController : Controller
     {
         private readonly TiendaBdContext _context;

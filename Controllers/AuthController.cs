@@ -11,7 +11,7 @@ namespace TiendaAPI.Controllers
 {
     [ApiController]
     [Route("Login")]
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [DisableCors]
     public class AuthController : ControllerBase
 {
     private readonly Auth _auth;

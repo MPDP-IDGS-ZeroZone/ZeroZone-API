@@ -9,7 +9,7 @@ namespace ApiTienda.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [DisableCors]
     public class OfertaController : Controller
     {
         private readonly OfertaService _service;
