@@ -45,7 +45,7 @@ namespace TiendaAPI.Services
             JwtSecurityTokenHandler receiveHandler = new JwtSecurityTokenHandler();
             JwtSecurityToken token = (JwtSecurityToken)receiveHandler.ReadToken(Token);
         
-            Id = Convert.ToInt32(token.Claims.FirstOrDefault( c => c.Type == ClaimTypes.Actor).Value);
+            Id = Convert.ToInt32(token.Claims.First( c => c.Type == ClaimTypes.Actor).Value);
         }
         
         return Id;
