@@ -15,8 +15,6 @@ namespace ApiTienda.Data.Request
 
         public string Foto { get; set; } = null!;
 
-        public DateTime FechaCreacion { get; set; }
-
         public int IdCategoria { get; set; }
 
         public string Tipo { get; set; } = null!;

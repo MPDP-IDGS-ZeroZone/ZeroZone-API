@@ -32,10 +32,7 @@ namespace TiendaAPI.Services
         // Generar token JWT
         var token = GenerateJwtToken(user);
 
-        return new {
-            Token = token,
-            id = user.Idsocio
-        };
+        return new {Token = token};
     }
 
     public int FuncionMagica(string Token){

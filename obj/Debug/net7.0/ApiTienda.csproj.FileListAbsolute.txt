@@ -322,3 +322,8 @@ C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\bin\Debug\net7.0\N
 C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\bin\Debug\net7.0\Scrutor.dll
 C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.dll
 C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
+C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\bin\Debug\net7.0\out\web.config
+C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\bin\Debug\net7.0\out\ApiTienda.deps.json
+C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\bin\Debug\net7.0\out\ApiTienda.runtimeconfig.json
+C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\bin\Debug\net7.0\out\appsettings.Development.json
+C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\bin\Debug\net7.0\out\appsettings.json

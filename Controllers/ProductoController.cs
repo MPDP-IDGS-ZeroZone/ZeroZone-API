@@ -20,9 +20,9 @@ namespace ApiTienda.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Producto>> Get(int Id = 0, int Categoria = 0, int SocioID = 0, string Nombre = "", bool DisponibleOnly = false)
+        public ActionResult<IEnumerable<Producto>> Get(int Id = 0, int Categoria = 0, int SocioID = 0, string Nombre = "", String Statusp = "")
         {
-            var producto = _service.Get(Id, Categoria, SocioID, Nombre, DisponibleOnly);
+            var producto = _service.Get(Id, Categoria, SocioID, Nombre, Statusp);
             
             if (producto is null){
                 return NotFound();
@@ -45,7 +45,7 @@ namespace ApiTienda.Controllers
                 var newProducto = _service.Create(producto, idSocio);
                 return CreatedAtAction(nameof(Get), new {Id = newProducto.Idproducto}, newProducto);
             }else{
-                return BadRequest();
+                return BadRequest(new{Error = "La funcion magica no funciono correctamente"});
             }
         }
 

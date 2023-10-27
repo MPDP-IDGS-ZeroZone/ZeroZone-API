@@ -13,7 +13,7 @@ public class ProductoService
         _context = context;
     }
 
-    public IEnumerable<ProductoResponse> Get(int Id = 0, int Categoria = 0, int SocioID = 0, string Nombre = "", bool DisponibleOnly = false)
+    public IEnumerable<ProductoResponse> Get(int Id = 0, int Categoria = 0, int SocioID = 0, string Nombre = "", string Statusp = "")
     {
         IEnumerable<Producto> producto = _context.Productos.Select(producto => producto);
         
@@ -37,9 +37,9 @@ public class ProductoService
             producto = producto.Where(producto => producto.Nombre.StartsWith(Nombre)).OrderBy(producto => producto.Nombre);
         }
         
-        if(DisponibleOnly)
+        if(Statusp != "")
         {
-            producto = producto.Where(producto => producto.Statusp == "Disponible");
+            producto = producto.Where(producto => producto.Statusp == Statusp);
         }
 
         List<ProductoResponse> response = new List<ProductoResponse>();
@@ -91,7 +91,7 @@ public class ProductoService
         producto.Descripcion = newProducto.Descripcion;
         producto.Precio = newProducto.Precio;
         producto.Foto = newProducto.Foto;
-        producto.FechaCreacion = newProducto.FechaCreacion;
+        producto.FechaCreacion = DateTime.Now;
         producto.Idcategoria = newProducto.IdCategoria;
         producto.Tipo = newProducto.Tipo;
         producto.Stock = newProducto.Stock;
@@ -113,7 +113,6 @@ public class ProductoService
             existingProducto.Descripcion = producto.Descripcion;
             existingProducto.Precio = producto.Precio;
             existingProducto.Foto = producto.Foto;
-            existingProducto.FechaCreacion = producto.FechaCreacion;
             existingProducto.Idcategoria = producto.IdCategoria;
             existingProducto.Tipo = producto.Tipo;
             existingProducto.Stock = producto.Stock;
