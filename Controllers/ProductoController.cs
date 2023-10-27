@@ -4,9 +4,11 @@ using ApiTienda.Data.Models;
 using ApiTienda.Data.Request;
 using Microsoft.AspNetCore.Authorization;
 using TiendaAPI.Services;
+using Microsoft.AspNetCore.Cors;
 
 namespace ApiTienda.Controllers
 {
+    [EnableCors ]
     [ApiController]
     [Route("[controller]")]
     public class ProductoController : Controller
@@ -32,6 +34,7 @@ namespace ApiTienda.Controllers
 
         [HttpPost]
         [Authorize]
+ 
         public IActionResult Create(ProductoRequest producto)
         {
             int idSocio = 0;

@@ -14,8 +14,8 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyOrigins, policy => {
             policy.WithOrigins("*");
-            policy.WithHeaders("*");
-            policy.WithMethods("GET", "POST", "PUT", "DELETE");
+            policy.AllowAnyHeader();
+        policy.WithMethods("GET", "POST", "PUT", "DELETE");
         });
 });
 
@@ -65,7 +65,7 @@ builder.Services.AddScoped<AuthService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())    
 {
     app.UseDeveloperExceptionPage();
     app.UseSwagger();

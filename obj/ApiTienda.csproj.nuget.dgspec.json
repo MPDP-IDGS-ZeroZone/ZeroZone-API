@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Daniel\\Desktop\\Univercidad\\Programacion\\ZeroZone-Api\\ApiTienda.csproj": {}
+    "D:\\otross\\apiprotible\\ZeroZone-Api\\ApiTienda.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Daniel\\Desktop\\Univercidad\\Programacion\\ZeroZone-Api\\ApiTienda.csproj": {
+    "D:\\otross\\apiprotible\\ZeroZone-Api\\ApiTienda.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Daniel\\Desktop\\Univercidad\\Programacion\\ZeroZone-Api\\ApiTienda.csproj",
+        "projectUniqueName": "D:\\otross\\apiprotible\\ZeroZone-Api\\ApiTienda.csproj",
         "projectName": "ApiTienda",
-        "projectPath": "C:\\Users\\Daniel\\Desktop\\Univercidad\\Programacion\\ZeroZone-Api\\ApiTienda.csproj",
-        "packagesPath": "C:\\Users\\Daniel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Daniel\\Desktop\\Univercidad\\Programacion\\ZeroZone-Api\\obj\\",
+        "projectPath": "D:\\otross\\apiprotible\\ZeroZone-Api\\ApiTienda.csproj",
+        "packagesPath": "C:\\Users\\ccram\\.nuget\\packages\\",
+        "outputPath": "D:\\otross\\apiprotible\\ZeroZone-Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Daniel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ccram\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -100,7 +100,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }
