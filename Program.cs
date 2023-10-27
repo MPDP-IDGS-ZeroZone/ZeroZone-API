@@ -15,7 +15,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyOrigins, policy => {
             policy.WithOrigins("*");
             policy.WithHeaders("*");
-            policy.WithMethods("*");
+            policy.WithMethods("GET,POST,PUT,DELETE");
         });
 });
 
