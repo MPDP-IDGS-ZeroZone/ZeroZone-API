@@ -1,4 +1,7 @@
 C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\out\ApiTienda.exe
+C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\out\out\out\out\out\out\out\web.config
+C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\out\out\out\out\out\out\web.config
+C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\out\out\out\out\out\web.config
 C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\out\out\out\out\web.config
 C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\out\out\out\web.config
 C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\out\out\web.config
@@ -16,6 +19,18 @@ C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\out\out\out\out\Ap
 C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\out\out\out\out\ApiTienda.runtimeconfig.json
 C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\out\out\out\out\appsettings.Development.json
 C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\out\out\out\out\appsettings.json
+C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\out\out\out\out\out\ApiTienda.deps.json
+C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\out\out\out\out\out\ApiTienda.runtimeconfig.json
+C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\out\out\out\out\out\appsettings.Development.json
+C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\out\out\out\out\out\appsettings.json
+C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\out\out\out\out\out\out\ApiTienda.deps.json
+C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\out\out\out\out\out\out\ApiTienda.runtimeconfig.json
+C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\out\out\out\out\out\out\appsettings.Development.json
+C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\out\out\out\out\out\out\appsettings.json
+C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\out\out\out\out\out\out\out\ApiTienda.deps.json
+C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\out\out\out\out\out\out\out\ApiTienda.runtimeconfig.json
+C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\out\out\out\out\out\out\out\appsettings.Development.json
+C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\out\out\out\out\out\out\out\appsettings.json
 C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\out\ApiTienda.dll
 C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\out\ApiTienda.runtimeconfig.json
 C:\Users\Daniel\Desktop\Univercidad\Programacion\ZeroZone-Api\out\ApiTienda.pdb
