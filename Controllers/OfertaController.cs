@@ -39,10 +39,6 @@ namespace ApiTienda.Controllers
         [Authorize]
         public IActionResult Update(int Id, OfertaRequest Oferta)
         {
-            if(Id != Oferta.Idoferta)
-            {
-                return BadRequest();
-            }
             var OfertaToUpdate = _service.GetById(Id);
 
             if(OfertaToUpdate is not null)

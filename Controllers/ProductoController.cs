@@ -3,6 +3,7 @@ using ApiTienda.Services;
 using ApiTienda.Data.Models;
 using ApiTienda.Data.Request;
 using Microsoft.AspNetCore.Authorization;
+using TiendaAPI.Services;
 
 namespace ApiTienda.Controllers
 {
@@ -11,9 +12,11 @@ namespace ApiTienda.Controllers
     public class ProductoController : Controller
     {
         private readonly ProductoService _service;
-        public ProductoController(ProductoService service)
+        private readonly AuthService _auth;
+        public ProductoController(ProductoService service, AuthService auth)
         {
             _service = service;
+            _auth = auth;
         }
 
         [HttpGet]
@@ -31,18 +34,25 @@ namespace ApiTienda.Controllers
         [Authorize]
         public IActionResult Create(ProductoRequest producto)
         {
-            var newProducto = _service.Create(producto);
-            return CreatedAtAction(nameof(Get), new {Id = newProducto.Idproducto}, newProducto);
+            int idSocio = 0;
+            if (!string.IsNullOrEmpty(this.HttpContext.Request.Headers["Authorization"]) && this.HttpContext.Request.Headers["Authorization"].ToString().StartsWith("Bearer "))
+            {
+                string Token = this.HttpContext.Request.Headers["Authorization"].ToString().Substring("Bearer ".Length);
+                idSocio = _auth.FuncionMagica(Token);
+            }
+            
+            if(idSocio != 0){
+                var newProducto = _service.Create(producto, idSocio);
+                return CreatedAtAction(nameof(Get), new {Id = newProducto.Idproducto}, newProducto);
+            }else{
+                return BadRequest();
+            }
         }
 
         [HttpPut]
         [Authorize]
         public IActionResult Update(int Id, ProductoRequest producto)
         {
-            if(Id != producto.Idproducto)
-            {
-                return BadRequest();
-            }
             var ProductoToUpdate = _service.Get(Id).First();
 
             if(ProductoToUpdate is not null)

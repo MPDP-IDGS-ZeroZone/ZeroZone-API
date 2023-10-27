@@ -39,10 +39,6 @@ namespace ApiTienda.Controllers
         [Authorize]
         public IActionResult Update(int Id, CategoriaRequest Categoria)
         {
-            if(Id != Categoria.Idcategoria)
-            {
-                return BadRequest();
-            }
             var CategoriaToUpdate = _service.GetById(Id);
 
             if(CategoriaToUpdate is not null)

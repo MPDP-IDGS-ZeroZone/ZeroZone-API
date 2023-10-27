@@ -6,8 +6,6 @@ namespace ApiTienda.Data.Request;
 
 public partial class OfertaRequest
 {
-    public int Idoferta { get; set; }
-
     public int Idproducto { get; set; }
 
     public int Porcentaje { get; set; }

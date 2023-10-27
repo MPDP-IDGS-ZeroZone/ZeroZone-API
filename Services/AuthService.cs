@@ -9,17 +9,15 @@ using ApiTienda.Data;
 using ApiTienda.Data.Models;
 using Microsoft.IdentityModel.Tokens;
 
-namespace TiendaAPI.Data
+namespace TiendaAPI.Services
 {
-    public class Auth
+    public class AuthService
 {
     private readonly TiendaBdContext _context;
-    private readonly IConfiguration _configuration;
 
-    public Auth (TiendaBdContext context, IConfiguration configuration)
+    public AuthService (TiendaBdContext context)
     {
         _context = context;
-        _configuration = configuration;
     }
 
     public object Authenticate(string mail, string password)
@@ -40,6 +38,19 @@ namespace TiendaAPI.Data
         };
     }
 
+    public int FuncionMagica(string Token){
+        int Id = 0;
+        
+        if(Token != ""){
+            JwtSecurityTokenHandler receiveHandler = new JwtSecurityTokenHandler();
+            JwtSecurityToken token = (JwtSecurityToken)receiveHandler.ReadToken(Token);
+        
+            Id = Convert.ToInt32(token.Claims.FirstOrDefault( c => c.Type == ClaimTypes.Actor).Value);
+        }
+        
+        return Id;
+    }
+
     private string GenerateJwtToken(UsuariosSocio user)
     {
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("conexion@935algoritmosifrado9123@djdncosa"));
@@ -49,6 +60,7 @@ namespace TiendaAPI.Data
         {
             new Claim(ClaimTypes.Name, user.Mail),
             new Claim(ClaimTypes.Role, user.Rol),
+            new Claim(ClaimTypes.Actor, user.Idusuariosocio.ToString())
             // Puedes agregar más claims según tus necesidades
         };
 

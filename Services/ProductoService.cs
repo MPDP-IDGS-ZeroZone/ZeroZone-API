@@ -83,10 +83,10 @@ public class ProductoService
         return producto;
     }
 
-    public Producto Create(ProductoRequest newProducto)
+    public Producto Create(ProductoRequest newProducto, int idSocio)
     {
         Producto producto = new Producto();
-        producto.Idusuariosocio = newProducto.Idusuariosocio;
+        producto.Idusuariosocio = idSocio;
         producto.Nombre = newProducto.Nombre;
         producto.Descripcion = newProducto.Descripcion;
         producto.Precio = newProducto.Precio;
@@ -109,7 +109,6 @@ public class ProductoService
 
         if (existingProducto is not null)
         {
-            existingProducto.Idusuariosocio = producto.Idusuariosocio;
             existingProducto.Nombre = producto.Nombre;
             existingProducto.Descripcion = producto.Descripcion;
             existingProducto.Precio = producto.Precio;

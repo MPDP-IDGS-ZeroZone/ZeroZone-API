@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using TiendaAPI.Data;
-using TiendaAPI.Data.Models;
+using TiendaAPI.Data.Request;
+using TiendaAPI.Services;
 
 namespace TiendaAPI.Controllers
 {
@@ -12,9 +12,9 @@ namespace TiendaAPI.Controllers
     [Route("Login")]
     public class AuthController : ControllerBase
 {
-    private readonly Auth _auth;
+    private readonly AuthService _auth;
 
-    public AuthController(Auth auth)
+    public AuthController(AuthService auth)
     {
         _auth = auth;
     }
