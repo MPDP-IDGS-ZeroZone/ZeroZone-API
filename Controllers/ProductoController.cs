@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Cors;
 
 namespace ApiTienda.Controllers
 {
-    [EnableCors ]
+ 
     [ApiController]
     [Route("[controller]")]
     public class ProductoController : Controller
@@ -31,10 +31,10 @@ namespace ApiTienda.Controllers
             }
             return Ok(producto);
         }
-
+       
+        [EnableCors("_myAllowSpecificOrigins") ]
         [HttpPost]
         [Authorize]
- 
         public IActionResult Create(ProductoRequest producto)
         {
             int idSocio = 0;
