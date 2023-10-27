@@ -22,7 +22,7 @@ namespace TiendaAPI.Data
         _configuration = configuration;
     }
 
-    public string Authenticate(string mail, string password)
+    public object Authenticate(string mail, string password)
     {
         var user = _context.UsuariosSocios.SingleOrDefault(u => u.Mail == mail && u.Pasword == password);
 
@@ -34,7 +34,10 @@ namespace TiendaAPI.Data
         // Generar token JWT
         var token = GenerateJwtToken(user);
 
-        return token;
+        return new {
+            Token = token,
+            id = user.Idsocio
+        };
     }
 
     private string GenerateJwtToken(UsuariosSocio user)

@@ -24,12 +24,12 @@ namespace TiendaAPI.Controllers
     {
         var token = _auth.Authenticate(model.Mail, model.Pasword);
 
-        if (token == "")
+        if (token == null)
         {
             return Unauthorized(); // Credenciales no válidas
         }
 
-        return Ok(new { Token = token });
+        return Ok(token);
     }
 }
 }

@@ -7,24 +7,24 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAnSkqNNdVBUa4NcD9NPmeQAAAAAACAAAAAAAQZgAAAAEAACAAAADcnWdVHXzrSty/x4+rZr9ihPcytlcJsLz4xkd8nocQtQAAAAAOgAAAAAIAACAAAAB7A9dqY8tmP2+g9cvqD1GbtdJmDA4qv7AbJNId1Ri3VyAAAABrWpwe4ilZdx/CQ0JDYbQQu839KPgalx4ABJUL3WOq4kAAAAD4s5jbHhHX7j7YaUy/hGxs1SqSxrQ6bmaJnqYiWggY81p8xvu+ziLenRYI0F0tmQjf5EgNVip6e0eGjAbPA5en</EncryptedPassword>
     <_PublishTargetUrl>ftp://155.254.244.27/www.ApiTienda.somee.com</_PublishTargetUrl>
-    <History>True|2023-10-25T03:51:14.2315291Z;</History>
+    <History>False|2023-10-26T03:32:20.4833368Z;True|2023-10-24T21:51:14.2315291-06:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApiTienda.deps.json">
-      <publishTime>10/24/2023 21:48:32</publishTime>
+      <publishTime>10/25/2023 21:31:02</publishTime>
     </File>
     <File Include="ApiTienda.dll">
-      <publishTime>10/24/2023 21:48:28</publishTime>
+      <publishTime>10/25/2023 21:30:57</publishTime>
     </File>
     <File Include="ApiTienda.exe">
-      <publishTime>10/24/2023 21:48:28</publishTime>
+      <publishTime>10/25/2023 21:30:57</publishTime>
     </File>
     <File Include="ApiTienda.pdb">
-      <publishTime>10/24/2023 21:48:28</publishTime>
+      <publishTime>10/25/2023 21:30:57</publishTime>
     </File>
     <File Include="ApiTienda.runtimeconfig.json">
-      <publishTime>10/24/2023 21:39:51</publishTime>
+      <publishTime>10/25/2023 21:25:55</publishTime>
     </File>
     <File Include="appsettings.Development.json">
       <publishTime>10/15/2023 19:56:50</publishTime>
@@ -48,7 +48,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/14/2020 16:39:12</publishTime>
     </File>
     <File Include="Microsoft.Data.SqlClient.dll">
-      <publishTime>03/27/2023 23:28:24</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Microsoft.EntityFrameworkCore.Abstractions.dll">
       <publishTime>09/28/2023 19:47:02</publishTime>
@@ -66,10 +66,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/18/2022 10:15:30</publishTime>
     </File>
     <File Include="Microsoft.Identity.Client.dll">
-      <publishTime>10/03/2022 11:40:38</publishTime>
+      <publishTime>03/10/2022 11:40:38</publishTime>
     </File>
     <File Include="Microsoft.Identity.Client.Extensions.Msal.dll">
-      <publishTime>11/19/2021 16:02:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Microsoft.IdentityModel.Abstractions.dll">
       <publishTime>10/13/2022 13:42:54</publishTime>
@@ -84,10 +84,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/13/2022 13:24:18</publishTime>
     </File>
     <File Include="Microsoft.IdentityModel.Protocols.OpenIdConnect.dll">
-      <publishTime>10/13/2022 13:34:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Microsoft.IdentityModel.Tokens.dll">
-      <publishTime>10/13/2022 13:29:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Microsoft.OpenApi.dll">
       <publishTime>09/26/2022 06:32:38</publishTime>
@@ -102,7 +102,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>11/27/2018 17:10:18</publishTime>
     </File>
     <File Include="Newtonsoft.Json.dll">
-      <publishTime>03/08/2023 01:09:54</publishTime>
+      <publishTime>08/03/2023 01:09:54</publishTime>
+    </File>
+    <File Include="out/ApiTienda.deps.json">
+      <publishTime>10/25/2023 21:25:56</publishTime>
+    </File>
+    <File Include="out/ApiTienda.runtimeconfig.json">
+      <publishTime>10/25/2023 21:25:55</publishTime>
+    </File>
+    <File Include="out/appsettings.Development.json">
+      <publishTime>10/15/2023 19:56:50</publishTime>
     </File>
     <File Include="runtimes/unix/lib/net6.0/Microsoft.Data.SqlClient.dll">
       <publishTime>03/27/2023 23:28:24</publishTime>
@@ -141,22 +150,22 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/22/2021 17:49:58</publishTime>
     </File>
     <File Include="Scrutor.dll">
-      <publishTime>11/03/2020 12:42:16</publishTime>
+      <publishTime>03/11/2020 12:42:16</publishTime>
     </File>
     <File Include="Swashbuckle.AspNetCore.Filters.Abstractions.dll">
-      <publishTime>09/06/2023 20:53:18</publishTime>
+      <publishTime>06/09/2023 20:53:18</publishTime>
     </File>
     <File Include="Swashbuckle.AspNetCore.Filters.dll">
-      <publishTime>09/06/2023 20:53:20</publishTime>
+      <publishTime>06/09/2023 20:53:20</publishTime>
     </File>
     <File Include="Swashbuckle.AspNetCore.Swagger.dll">
-      <publishTime>01/11/2023 00:48:22</publishTime>
+      <publishTime>11/01/2023 00:48:22</publishTime>
     </File>
     <File Include="Swashbuckle.AspNetCore.SwaggerGen.dll">
-      <publishTime>01/11/2023 00:48:26</publishTime>
+      <publishTime>11/01/2023 00:48:26</publishTime>
     </File>
     <File Include="Swashbuckle.AspNetCore.SwaggerUI.dll">
-      <publishTime>01/11/2023 00:49:02</publishTime>
+      <publishTime>11/01/2023 00:49:02</publishTime>
     </File>
     <File Include="System.Configuration.ConfigurationManager.dll">
       <publishTime>08/19/2022 13:58:02</publishTime>
@@ -168,7 +177,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/13/2022 13:18:58</publishTime>
     </File>
     <File Include="System.Memory.Data.dll">
-      <publishTime>04/08/2021 10:45:54</publishTime>
+      <publishTime>08/04/2021 10:45:54</publishTime>
     </File>
     <File Include="System.Net.Http.Formatting.dll">
       <publishTime>10/20/2023 14:33:52</publishTime>
@@ -195,7 +204,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/22/2021 17:49:44</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>10/24/2023 21:48:33</publishTime>
+      <publishTime>10/25/2023 21:31:02</publishTime>
     </File>
   </ItemGroup>
 </Project>
