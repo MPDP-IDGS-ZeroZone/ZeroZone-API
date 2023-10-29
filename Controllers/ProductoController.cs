@@ -22,9 +22,9 @@ namespace ApiTienda.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Producto>> Get(int Id = 0, int Categoria = 0, int SocioID = 0, string Nombre = "", String Statusp = "")
+        public ActionResult<IEnumerable<Producto>> Get(int Id = 0, int SocioID = 0, string Nombre = "", int PrecioMin = 0, int PrecioMax = 99999, DateTime? FechaMin = null, DateTime? FechaMax = null, int Categoria = 0, string Tipo = "", string Statusp = "", int Page = 1, int PageSize = 10)
         {
-            var producto = _service.Get(Id, Categoria, SocioID, Nombre, Statusp);
+            var producto = _service.Get(Id, SocioID, Nombre, PrecioMin, PrecioMax, FechaMin, FechaMax, Categoria, Tipo, Statusp, Page, PageSize);
             
             if (producto is null){
                 return NotFound();
@@ -32,7 +32,6 @@ namespace ApiTienda.Controllers
             return Ok(producto);
         }
        
-        [EnableCors("_myAllowSpecificOrigins") ]
         [HttpPost]
         [Authorize]
         public IActionResult Create(ProductoRequest producto)

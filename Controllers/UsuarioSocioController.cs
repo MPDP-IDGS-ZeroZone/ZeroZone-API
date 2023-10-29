@@ -18,9 +18,14 @@ namespace ApiTienda.Controllers
         
         [HttpGet]
         [Authorize]
-        public IEnumerable<UsuariosSocio> Get()
+        public IEnumerable<UsuariosSocio> Get(int Page = 1, int PageSize = 10)
         {
-            return _context.UsuariosSocios.ToList();
+            IQueryable<UsuariosSocio> UsuariosSocioQuery = _context.UsuariosSocios.AsQueryable();
+            
+            int skipAmount = (Page - 1) * PageSize;
+            UsuariosSocioQuery = UsuariosSocioQuery.Skip(skipAmount).Take(PageSize);
+            
+            return UsuariosSocioQuery.ToList();
         }
 
         [HttpGet("{id}")]

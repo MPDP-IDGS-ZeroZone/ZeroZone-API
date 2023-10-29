@@ -12,21 +12,24 @@ public class CategoriaService
         _context = context;
     }
 
-    public IEnumerable<Categoria> Get(int Id = 0, string Nombre = "")
+    public IEnumerable<Categoria> Get(int Id = 0, string Nombre = "", int Page = 1, int PageSize = 10)
     {
-        IEnumerable<Categoria> Categoria = _context.Categorias.Select(Categoria => Categoria);
-        
-        if(Id != 0)
+        IQueryable<Categoria> categoriaQuery = _context.Categorias.AsQueryable();
+
+        if (Id != 0)
         {
-            Categoria = Categoria.Where(Categoria => Categoria.Idcategoria == Id);
-        }
-        
-        if(Nombre != "")
-        {
-            Categoria = Categoria.Where(Categoria => Categoria.Nombre.StartsWith(Nombre)).OrderBy(Categoria => Categoria.Nombre);
+            categoriaQuery = categoriaQuery.Where(c => c.Idcategoria == Id);
         }
 
-        return Categoria;
+        if (!string.IsNullOrEmpty(Nombre))
+        {
+            categoriaQuery = categoriaQuery.Where(c => c.Nombre.StartsWith(Nombre));
+        }
+
+        int skipAmount = (Page - 1) * PageSize;
+        categoriaQuery = categoriaQuery.Skip(skipAmount).Take(PageSize);
+
+        return categoriaQuery.ToList();
     }
     
     public Categoria GetById(int Id)

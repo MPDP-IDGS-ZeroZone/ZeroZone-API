@@ -13,66 +13,66 @@ public class ProductoService
         _context = context;
     }
 
-    public IEnumerable<ProductoResponse> Get(int Id = 0, int Categoria = 0, int SocioID = 0, string Nombre = "", string Statusp = "")
-    {
-        IEnumerable<Producto> producto = _context.Productos.Select(producto => producto);
-        
-        if(Id != 0)
+    public IEnumerable<ProductoResponse> Get(int Id = 0, int SocioID = 0, string Nombre = "", int PrecioMin = 0, int PrecioMax = 99999, DateTime? FechaMin = null, DateTime? FechaMax = null, int Categoria = 0, string Tipo = "", string Statusp = "", int Page = 1, int PageSize = 10)
         {
-            producto = producto.Where(producto => producto.Idproducto == Id);
-        }
-        
-        if(Categoria != 0)
+        IQueryable<Producto> productoQuery = _context.Productos.AsQueryable();
+
+        if (Id != 0)
         {
-            producto = producto.Where(producto => producto.Idcategoria == Categoria);
-        }
-        
-        if(SocioID != 0)
-        {
-            producto = producto.Where(producto => producto.Idusuariosocio == SocioID);
-        }
-        
-        if(Nombre != "")
-        {
-            producto = producto.Where(producto => producto.Nombre.StartsWith(Nombre)).OrderBy(producto => producto.Nombre);
-        }
-        
-        if(Statusp != "")
-        {
-            producto = producto.Where(producto => producto.Statusp == Statusp);
+            productoQuery = productoQuery.Where(p => p.Idproducto == Id);
         }
 
-        List<ProductoResponse> response = new List<ProductoResponse>();
-        
-        var categorias = _context.Categorias.ToList();
-        var usuariosSocios = _context.UsuariosSocios.ToList();
-        var socios = _context.Socios.ToList();
-        var ofertas = _context.Ofertas.Where(Oferta => Oferta.Estatus == "Activa" && Oferta.Fechainicio <= DateTime.Now && Oferta.Fechacierre >= DateTime.Now).ToList();
-
-        foreach(Producto p in producto)
+        if (SocioID != 0)
         {
-            ProductoResponse newProducto = new ProductoResponse();
-            var categoria = categorias.First(Categoria => Categoria.Idcategoria == p.Idcategoria);
-            var usuariosSocio = usuariosSocios.First(usuariosSocio => usuariosSocio.Idusuariosocio == p.Idusuariosocio);
-            var socio = socios.First(socio => socio.Idsocio == usuariosSocio.Idsocio);
-            var oferta = ofertas.Where(Oferta => Oferta.Idproducto == p.Idproducto);
+            productoQuery = productoQuery.Where(p => p.Idusuariosocio == SocioID);
+        }
 
-            newProducto.Idproducto = p.Idproducto;
-            newProducto.Idusuariosocio = p.Idusuariosocio;
-            newProducto.Socio = socio;
-            newProducto.Nombre = p.Nombre;
-            newProducto.Descripcion = p.Descripcion;
-            newProducto.Precio = p.Precio;
-            newProducto.Foto = p.Foto;
-            newProducto.FechaCreacion = p.FechaCreacion;
-            newProducto.Categoria = categoria;
-            newProducto.Tipo = p.Tipo;
-            newProducto.Stock = p.Stock;
-            newProducto.Statusp = p.Statusp;
-            newProducto.Oferta = oferta;
+        if (!string.IsNullOrEmpty(Nombre))
+        {
+            productoQuery = productoQuery.Where(p => p.Nombre.ToLower().StartsWith(Nombre.ToLower())).OrderBy(p => p.Nombre);
+        }
 
-            response.Add(newProducto);
-        };
+        productoQuery = productoQuery.Where(p => p.Precio >= PrecioMin && p.Precio <= PrecioMax);
+
+        if (FechaMin != null && FechaMax != null)
+        {
+            productoQuery = productoQuery.Where(p => p.FechaCreacion >= FechaMin && p.FechaCreacion <= FechaMax);
+        }
+
+        if (Categoria != 0)
+        {
+            productoQuery = productoQuery.Where(p => p.Idcategoria == Categoria);
+        }
+
+        if (!string.IsNullOrEmpty(Tipo))
+        {
+            productoQuery = productoQuery.Where(p => p.Tipo == Tipo);
+        }
+
+        if (!string.IsNullOrEmpty(Statusp))
+        {
+            productoQuery = productoQuery.Where(p => p.Statusp == Statusp);
+        }
+
+        int skipAmount = (Page - 1) * PageSize;
+        productoQuery = productoQuery.Skip(skipAmount).Take(PageSize);
+
+        List<ProductoResponse> response = productoQuery.Select(p => new ProductoResponse
+        {
+            Idproducto = p.Idproducto,
+            Idusuariosocio = p.Idusuariosocio,
+            Socio = p.IdusuariosocioNavigation.IdsocioNavigation,
+            Nombre = p.Nombre,
+            Descripcion = p.Descripcion,
+            Precio = p.Precio,
+            Foto = p.Foto,
+            FechaCreacion = p.FechaCreacion,
+            Categoria = p.IdcategoriaNavigation,
+            Tipo = p.Tipo,
+            Stock = p.Stock,
+            Statusp = p.Statusp,
+            Oferta = p.Oferta.Where(Oferta => Oferta.Estatus == "Activa" && Oferta.Fechainicio <= DateTime.Now && Oferta.Fechacierre >= DateTime.Now).ToList(),
+        }).ToList();
 
         return response;
     }

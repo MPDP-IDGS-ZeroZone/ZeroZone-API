@@ -13,36 +13,39 @@ public class OfertaService
         _context = context;
     }
 
-    public IEnumerable<Oferta> Get(int Id = 0, int Producto = 0, DateTime? FechaInicio = null, DateTime? FechaCierre = null, bool ActivaOnly = false)
+    public IEnumerable<Oferta> Get(int Id = 0, int Producto = 0, DateTime? FechaInicio = null, DateTime? FechaCierre = null, bool ActivaOnly = false, int Page = 1, int PageSize = 10)
     {
-        IEnumerable<Oferta> Oferta = _context.Ofertas.Select(Oferta => Oferta);
-        
-        if(Id != 0)
+        IQueryable<Oferta> ofertaQuery = _context.Ofertas.AsQueryable();
+
+        if (Id != 0)
         {
-            Oferta = Oferta.Where(Oferta => Oferta.Idoferta == Id);
+            ofertaQuery = ofertaQuery.Where(o => o.Idoferta == Id);
         }
 
-        if(Producto != 0)
+        if (Producto != 0)
         {
-            Oferta = Oferta.Where(Oferta => Oferta.Idproducto == Producto);
+            ofertaQuery = ofertaQuery.Where(o => o.Idproducto == Producto);
         }
 
-        if(FechaInicio != null)
+        if (FechaInicio != null)
         {
-            Oferta = Oferta.Where(Oferta => Oferta.Fechainicio == FechaInicio);
+            ofertaQuery = ofertaQuery.Where(o => o.Fechainicio == FechaInicio);
         }
 
-        if(FechaCierre != null)
+        if (FechaCierre != null)
         {
-            Oferta = Oferta.Where(Oferta => Oferta.Fechacierre == FechaCierre);
+            ofertaQuery = ofertaQuery.Where(o => o.Fechacierre == FechaCierre);
         }
 
-        if(ActivaOnly)
+        if (ActivaOnly)
         {
-            Oferta = Oferta.Where(Oferta => Oferta.Estatus == "Activa");
+            ofertaQuery = ofertaQuery.Where(o => o.Estatus == "Activa");
         }
 
-        return Oferta;
+        int skipAmount = (Page - 1) * PageSize;
+        ofertaQuery = ofertaQuery.Skip(skipAmount).Take(PageSize);
+
+        return ofertaQuery.ToList();
     }
     
     public Oferta GetById(int Id)

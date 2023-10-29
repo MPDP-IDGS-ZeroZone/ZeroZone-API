@@ -17,9 +17,9 @@ namespace ApiTienda.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Oferta>> Get(int Id = 0, int Producto = 0, DateTime? FechaInicio = null, DateTime? FechaCierre = null, bool ActivaOnly = false)
+        public ActionResult<IEnumerable<Oferta>> Get(int Id = 0, int Producto = 0, DateTime? FechaInicio = null, DateTime? FechaCierre = null, bool ActivaOnly = false, int Page = 1, int PageSize = 10)
         {
-            var Oferta = _service.Get(Id,Producto, FechaInicio, FechaCierre, ActivaOnly);
+            var Oferta = _service.Get(Id,Producto, FechaInicio, FechaCierre, ActivaOnly, Page, PageSize);
             
             if (Oferta is null){
                 return NotFound();
