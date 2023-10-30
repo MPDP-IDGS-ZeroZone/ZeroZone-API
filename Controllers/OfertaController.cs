@@ -44,7 +44,7 @@ namespace ApiTienda.Controllers
             if(OfertaToUpdate is not null)
             {
                 _service.Update(Id, Oferta);
-                return NoContent();
+                return Ok();
             }
             else
             {

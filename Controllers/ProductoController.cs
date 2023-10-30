@@ -60,7 +60,7 @@ namespace ApiTienda.Controllers
             if(ProductoToUpdate is not null)
             {
                 _service.Update(Id, producto);
-                return NoContent();
+                return Ok();
             }
             else
             {

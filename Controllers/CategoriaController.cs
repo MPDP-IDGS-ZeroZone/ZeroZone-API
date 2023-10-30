@@ -44,7 +44,7 @@ namespace ApiTienda.Controllers
             if(CategoriaToUpdate is not null)
             {
                 _service.Update(Id, Categoria);
-                return NoContent();
+                return Ok();
             }
             else
             {

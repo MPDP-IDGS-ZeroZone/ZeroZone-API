@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TiendaAPI.Data.Request
+namespace ApiTienda.Data.Request
 {
     public class Login
     {

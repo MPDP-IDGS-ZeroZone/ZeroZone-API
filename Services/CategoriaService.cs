@@ -38,11 +38,11 @@ public class CategoriaService
         return Categoria;
     }
 
-    public Categoria Create(CategoriaRequest newProducto)
+    public Categoria Create(CategoriaRequest newCategoria)
     {
         Categoria Categoria = new Categoria();
-        Categoria.Nombre = newProducto.Nombre;
-        Categoria.Foto = newProducto.Foto;
+        Categoria.Nombre = newCategoria.Nombre;
+        Categoria.Foto = newCategoria.Foto;
         
         _context.Categorias.Add(Categoria);
         _context.SaveChanges();
