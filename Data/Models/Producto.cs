@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace ApiTienda.Data.Models;
 
@@ -16,7 +15,7 @@ public partial class Producto
 
     public decimal Precio { get; set; }
 
-    public string Foto { get; set; } = null!;
+    public string? Foto { get; set; }
 
     public DateTime FechaCreacion { get; set; }
 
@@ -28,12 +27,17 @@ public partial class Producto
 
     public string Statusp { get; set; } = null!;
 
-    [JsonIgnore]
+    public int? Idplataforma { get; set; }
+
+    public virtual ICollection<DetallesVentum> DetallesVenta { get; set; } = new List<DetallesVentum>();
+
     public virtual Categoria IdcategoriaNavigation { get; set; } = null!;
 
-    [JsonIgnore]
+    public virtual Plataforma? IdplataformaNavigation { get; set; }
+
     public virtual UsuariosSocio IdusuariosocioNavigation { get; set; } = null!;
 
-    [JsonIgnore]
+    public virtual ICollection<Key> Keys { get; set; } = new List<Key>();
+
     public virtual ICollection<Oferta> Oferta { get; set; } = new List<Oferta>();
 }

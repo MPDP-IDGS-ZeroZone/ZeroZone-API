@@ -3,13 +3,15 @@ using System.Collections.Generic;
 
 namespace ApiTienda.Data.Models;
 
-public partial class Categoria
+public partial class Plataforma
 {
-    public int Idcategoria { get; set; }
+    public int Idplataforma { get; set; }
 
     public string Nombre { get; set; } = null!;
 
-    public string? Foto { get; set; }
+    public string? Descripcion { get; set; }
+
+    public string? UrlSitio { get; set; }
 
     public virtual ICollection<Producto> Productos { get; set; } = new List<Producto>();
 }

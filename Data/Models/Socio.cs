@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace ApiTienda.Data.Models;
 
@@ -14,6 +13,5 @@ public partial class Socio
 
     public DateTime FechaNacimiento { get; set; }
 
-    [JsonIgnore]
     public virtual ICollection<UsuariosSocio> UsuariosSocios { get; set; } = new List<UsuariosSocio>();
 }

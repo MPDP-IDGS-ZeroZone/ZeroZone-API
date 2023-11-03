@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 using TiendaAPI.Services;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +40,7 @@ builder.Services.AddSwaggerGen(c =>
 //JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => 
 {
+    string jwtKey = builder.Configuration["Jwt:key"] ?? "";
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
@@ -47,21 +49,23 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         ValidateIssuerSigningKey = true,
         ValidIssuer = builder.Configuration["Jwt:Issuer"],
         ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:key"]))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
     };
 });
 
 //DbContext
 builder.Services.AddSqlServer<TiendaBdContext>(builder.Configuration.GetConnectionString("TiendaConnection"));
 
+//Stripe
+StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
+
 //Servie layer
 builder.Services.AddScoped<ProductoService>();
 builder.Services.AddScoped<OfertaService>();
 builder.Services.AddScoped<CategoriaService>();
-
-//token JWT
-
+builder.Services.AddScoped<VentaService>();
 builder.Services.AddScoped<AuthService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

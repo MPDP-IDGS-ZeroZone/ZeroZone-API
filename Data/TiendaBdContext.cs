@@ -18,13 +18,21 @@ public partial class TiendaBdContext : DbContext
 
     public virtual DbSet<Categoria> Categorias { get; set; }
 
+    public virtual DbSet<DetallesVentum> DetallesVenta { get; set; }
+
+    public virtual DbSet<Key> Keys { get; set; }
+
     public virtual DbSet<Oferta> Ofertas { get; set; }
+
+    public virtual DbSet<Plataforma> Plataformas { get; set; }
 
     public virtual DbSet<Producto> Productos { get; set; }
 
     public virtual DbSet<Socio> Socios { get; set; }
 
     public virtual DbSet<UsuariosSocio> UsuariosSocios { get; set; }
+
+    public virtual DbSet<Venta> Ventas { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -34,11 +42,53 @@ public partial class TiendaBdContext : DbContext
 
             entity.Property(e => e.Idcategoria).HasColumnName("idcategoria");
             entity.Property(e => e.Foto)
-                .HasMaxLength(500)
+                .IsUnicode(false)
                 .HasColumnName("foto");
             entity.Property(e => e.Nombre)
                 .HasMaxLength(70)
                 .HasColumnName("nombre");
+        });
+
+        modelBuilder.Entity<DetallesVentum>(entity =>
+        {
+            entity.HasKey(e => e.Iddetalleventa).HasName("PK__Detalles__4EA18098FC6A9552");
+
+            entity.Property(e => e.Iddetalleventa).HasColumnName("iddetalleventa");
+            entity.Property(e => e.Cantidad).HasColumnName("cantidad");
+            entity.Property(e => e.Idproducto).HasColumnName("idproducto");
+            entity.Property(e => e.Idventa).HasColumnName("idventa");
+            entity.Property(e => e.Preciounitario)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("preciounitario");
+
+            entity.HasOne(d => d.IdproductoNavigation).WithMany(p => p.DetallesVenta)
+                .HasForeignKey(d => d.Idproducto)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__DetallesV__idpro__45BE5BA9");
+
+            entity.HasOne(d => d.IdventaNavigation).WithMany(p => p.DetallesVenta)
+                .HasForeignKey(d => d.Idventa)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__DetallesV__idven__44CA3770");
+        });
+
+        modelBuilder.Entity<Key>(entity =>
+        {
+            entity.HasKey(e => e.Idkey).HasName("PK__Keys__07FFE172897A5713");
+
+            entity.Property(e => e.Idkey).HasColumnName("idkey");
+            entity.Property(e => e.Estatus)
+                .HasMaxLength(70)
+                .HasColumnName("estatus");
+            entity.Property(e => e.Idproducto).HasColumnName("idproducto");
+            entity.Property(e => e.Keyproducto)
+                .HasMaxLength(255)
+                .HasColumnName("keyproducto");
+
+            entity.HasOne(d => d.IdproductoNavigation).WithMany(p => p.Keys)
+                .HasForeignKey(d => d.Idproducto)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Keys__idproducto__3F115E1A");
         });
 
         modelBuilder.Entity<Oferta>(entity =>
@@ -64,6 +114,22 @@ public partial class TiendaBdContext : DbContext
                 .HasConstraintName("FK__Ofertas__idprodu__0F624AF8");
         });
 
+        modelBuilder.Entity<Plataforma>(entity =>
+        {
+            entity.HasKey(e => e.Idplataforma).HasName("PK__Platafor__F3C55CD8657E5AF0");
+
+            entity.Property(e => e.Idplataforma).HasColumnName("idplataforma");
+            entity.Property(e => e.Descripcion)
+                .HasMaxLength(255)
+                .HasColumnName("descripcion");
+            entity.Property(e => e.Nombre)
+                .HasMaxLength(70)
+                .HasColumnName("nombre");
+            entity.Property(e => e.UrlSitio)
+                .HasMaxLength(255)
+                .HasColumnName("url_sitio");
+        });
+
         modelBuilder.Entity<Producto>(entity =>
         {
             entity.HasKey(e => e.Idproducto).HasName("PK__Producto__DC53BE3C55C4E50A");
@@ -76,9 +142,10 @@ public partial class TiendaBdContext : DbContext
                 .HasColumnType("date")
                 .HasColumnName("fecha_creacion");
             entity.Property(e => e.Foto)
-                .HasMaxLength(500)
+                .IsUnicode(false)
                 .HasColumnName("foto");
             entity.Property(e => e.Idcategoria).HasColumnName("idcategoria");
+            entity.Property(e => e.Idplataforma).HasColumnName("idplataforma");
             entity.Property(e => e.Idusuariosocio).HasColumnName("idusuariosocio");
             entity.Property(e => e.Nombre)
                 .HasMaxLength(70)
@@ -98,6 +165,10 @@ public partial class TiendaBdContext : DbContext
                 .HasForeignKey(d => d.Idcategoria)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Productos__idcat__0B91BA14");
+
+            entity.HasOne(d => d.IdplataformaNavigation).WithMany(p => p.Productos)
+                .HasForeignKey(d => d.Idplataforma)
+                .HasConstraintName("FK__Productos__idpla__1F98B2C1");
 
             entity.HasOne(d => d.IdusuariosocioNavigation).WithMany(p => p.Productos)
                 .HasForeignKey(d => d.Idusuariosocio)
@@ -141,6 +212,25 @@ public partial class TiendaBdContext : DbContext
                 .HasForeignKey(d => d.Idsocio)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Usuarios___idsoc__5EBF139D");
+        });
+
+        modelBuilder.Entity<Venta>(entity =>
+        {
+            entity.HasKey(e => e.Idventa).HasName("PK__Ventas__F82D1AFBE960B8F8");
+
+            entity.Property(e => e.Idventa).HasColumnName("idventa");
+            entity.Property(e => e.Estatus)
+                .HasMaxLength(70)
+                .HasColumnName("estatus");
+            entity.Property(e => e.Fechaventa)
+                .HasColumnType("date")
+                .HasColumnName("fechaventa");
+            entity.Property(e => e.Idusuariosocio).HasColumnName("idusuariosocio");
+
+            entity.HasOne(d => d.IdusuariosocioNavigation).WithMany(p => p.Venta)
+                .HasForeignKey(d => d.Idusuariosocio)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Ventas__idusuari__41EDCAC5");
         });
 
         OnModelCreatingPartial(modelBuilder);

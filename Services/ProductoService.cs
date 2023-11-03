@@ -65,7 +65,7 @@ public class ProductoService
             Nombre = p.Nombre,
             Descripcion = p.Descripcion,
             Precio = p.Precio,
-            Foto = p.Foto,
+            Foto = p.Foto ?? "",
             FechaCreacion = p.FechaCreacion,
             Categoria = p.IdcategoriaNavigation,
             Tipo = p.Tipo,
@@ -83,10 +83,10 @@ public class ProductoService
         return producto;
     }
 
-    public Producto Create(ProductoRequest newProducto, int idSocio)
+    public Producto Create(ProductoRequest newProducto, int idUsuarioSocio)
     {
         Producto producto = new Producto();
-        producto.Idusuariosocio = idSocio;
+        producto.Idusuariosocio = idUsuarioSocio;
         producto.Nombre = newProducto.Nombre;
         producto.Descripcion = newProducto.Descripcion;
         producto.Precio = newProducto.Precio;

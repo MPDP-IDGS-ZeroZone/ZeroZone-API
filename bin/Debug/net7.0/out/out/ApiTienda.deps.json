@@ -14,7 +14,6 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.12",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.12",
           "Newtonsoft.Json": "13.0.3",
-          "Stripe.net": "43.0.0",
           "Swashbuckle.AspNetCore": "6.5.0",
           "Swashbuckle.AspNetCore.Filters": "7.0.11",
           "Swashbuckle.AspNetCore.Swagger": "6.5.0"
@@ -57,14 +56,7 @@
           }
         }
       },
-      "Humanizer.Core/2.14.1": {
-        "runtime": {
-          "lib/net6.0/Humanizer.dll": {
-            "assemblyVersion": "2.14.0.0",
-            "fileVersion": "2.14.1.48190"
-          }
-        }
-      },
+      "Humanizer.Core/2.14.1": {},
       "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.12": {
         "dependencies": {
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.24.0"
@@ -187,12 +179,6 @@
           "Microsoft.EntityFrameworkCore.Relational": "7.0.12",
           "Microsoft.Extensions.DependencyModel": "7.0.0",
           "Mono.TextTemplating": "2.2.1"
-        },
-        "runtime": {
-          "lib/net6.0/Microsoft.EntityFrameworkCore.Design.dll": {
-            "assemblyVersion": "7.0.12.0",
-            "fileVersion": "7.0.1223.47811"
-          }
         }
       },
       "Microsoft.EntityFrameworkCore.Relational/7.0.12": {
@@ -407,12 +393,6 @@
       "Mono.TextTemplating/2.2.1": {
         "dependencies": {
           "System.CodeDom": "4.4.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Mono.TextTemplating.dll": {
-            "assemblyVersion": "2.2.0.0",
-            "fileVersion": "2.2.1.1"
-          }
         }
       },
       "Newtonsoft.Json/13.0.3": {
@@ -432,18 +412,6 @@
           "lib/netcoreapp3.1/Scrutor.dll": {
             "assemblyVersion": "3.0.2.0",
             "fileVersion": "3.0.2.0"
-          }
-        }
-      },
-      "Stripe.net/43.0.0": {
-        "dependencies": {
-          "Newtonsoft.Json": "13.0.3",
-          "System.Configuration.ConfigurationManager": "6.0.1"
-        },
-        "runtime": {
-          "lib/net6.0/Stripe.net.dll": {
-            "assemblyVersion": "43.0.0.0",
-            "fileVersion": "43.0.0.0"
           }
         }
       },
@@ -508,14 +476,7 @@
           }
         }
       },
-      "System.CodeDom/4.4.0": {
-        "runtime": {
-          "lib/netstandard2.0/System.CodeDom.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.6.25519.3"
-          }
-        }
-      },
+      "System.CodeDom/4.4.0": {},
       "System.Configuration.ConfigurationManager/6.0.1": {
         "dependencies": {
           "System.Security.Cryptography.ProtectedData": "6.0.0",
@@ -992,13 +953,6 @@
       "sha512": "sha512-BwqCnFzp2/Z+pq17iztxlIkR/ZANyPRR4PdE57WL1w/JW4AM/2imoxBWTL3+G+YXA46ce4s9OUgwWqTXYrtI8A==",
       "path": "scrutor/3.3.0",
       "hashPath": "scrutor.3.3.0.nupkg.sha512"
-    },
-    "Stripe.net/43.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Kdv2B5dWagOZlDrGQjN3yDJW2anZl0QWgenpmUPoOeOXOVRvw+jpwefvHqWw6AoGQ+WcaNdFYF+5nxcZ1mR7EA==",
-      "path": "stripe.net/43.0.0",
-      "hashPath": "stripe.net.43.0.0.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore/6.5.0": {
       "type": "package",

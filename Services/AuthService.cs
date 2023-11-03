@@ -37,7 +37,7 @@ namespace TiendaAPI.Services
             return new {Token = token};
         }
 
-        public int FuncionMagica(string Token){
+        public UsuariosSocio FuncionMagica(string Token){
             int Id = 0;
             
             if(Token != ""){
@@ -46,8 +46,8 @@ namespace TiendaAPI.Services
             
                 Id = Convert.ToInt32(token.Claims.First( c => c.Type == ClaimTypes.Actor).Value);
             }
-            
-            return Id;
+            var UsuarioSocio = _context.UsuariosSocios.Where(UsuariosSocio => UsuariosSocio.Idsocio == Id).First();
+            return UsuarioSocio;
         }
 
         private string GenerateJwtToken(UsuariosSocio user)

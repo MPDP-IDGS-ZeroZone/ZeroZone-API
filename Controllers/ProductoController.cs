@@ -36,15 +36,15 @@ namespace ApiTienda.Controllers
         [Authorize]
         public IActionResult Create(ProductoRequest producto)
         {
-            int idSocio = 0;
+            UsuariosSocio usuariosSocio = new UsuariosSocio();
             if (!string.IsNullOrEmpty(this.HttpContext.Request.Headers["Authorization"]) && this.HttpContext.Request.Headers["Authorization"].ToString().StartsWith("Bearer "))
             {
                 string Token = this.HttpContext.Request.Headers["Authorization"].ToString().Substring("Bearer ".Length);
-                idSocio = _auth.FuncionMagica(Token);
+                usuariosSocio = _auth.FuncionMagica(Token);
             }
             
-            if(idSocio != 0){
-                var newProducto = _service.Create(producto, idSocio);
+            if(usuariosSocio.Idusuariosocio != 0){
+                var newProducto = _service.Create(producto, usuariosSocio.Idusuariosocio);
                 return CreatedAtAction(nameof(Get), new {Id = newProducto.Idproducto}, newProducto);
             }else{
                 return BadRequest(new{Error = "La funcion magica no funciono correctamente"});

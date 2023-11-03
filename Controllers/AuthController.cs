@@ -7,6 +7,7 @@ using ApiTienda.Data.Response;
 using Microsoft.AspNetCore.Mvc;
 using TiendaAPI.Services;
 using Microsoft.AspNetCore.Authorization;
+using ApiTienda.Data.Models;
 
 namespace TiendaAPI.Controllers
 {
@@ -96,16 +97,16 @@ namespace TiendaAPI.Controllers
         [Route("MyAccount")]
         public ActionResult<IEnumerable<AccountResponse>> GetMyAccount()
         {
-            int idSocio = 0;
+            UsuariosSocio usuariosSocio = new UsuariosSocio();
             if (!string.IsNullOrEmpty(this.HttpContext.Request.Headers["Authorization"]) && this.HttpContext.Request.Headers["Authorization"].ToString().StartsWith("Bearer "))
             {
                 string Token = this.HttpContext.Request.Headers["Authorization"].ToString().Substring("Bearer ".Length);
-                idSocio = _auth.FuncionMagica(Token);
+                usuariosSocio = _auth.FuncionMagica(Token);
             }
             
-            if(idSocio != 0)
+            if(usuariosSocio.Idsocio != 0)
             {
-                var AccountResponse = _auth.Get(idSocio);
+                var AccountResponse = _auth.Get(usuariosSocio.Idsocio);
             
                 if (AccountResponse is null){
                     return NotFound();
@@ -122,20 +123,20 @@ namespace TiendaAPI.Controllers
         [Route("MyAccount")]
         public IActionResult UpdateMyAccount(Account Account)
         {
-            int idSocio = 0;
+            UsuariosSocio usuariosSocio = new UsuariosSocio();
             if (!string.IsNullOrEmpty(this.HttpContext.Request.Headers["Authorization"]) && this.HttpContext.Request.Headers["Authorization"].ToString().StartsWith("Bearer "))
             {
                 string Token = this.HttpContext.Request.Headers["Authorization"].ToString().Substring("Bearer ".Length);
-                idSocio = _auth.FuncionMagica(Token);
+                usuariosSocio = _auth.FuncionMagica(Token);
             }
             
-            if(idSocio != 0)
+            if(usuariosSocio.Idsocio != 0)
             {
-                var AccountToUpdate = _auth.GetById(idSocio);
+                var AccountToUpdate = _auth.GetById(usuariosSocio.Idsocio);
 
                 if(AccountToUpdate is not null)
                 {
-                    _auth.Update(idSocio, Account);
+                    _auth.Update(usuariosSocio.Idsocio, Account);
                     return Ok();
                 }
                 else
@@ -153,20 +154,20 @@ namespace TiendaAPI.Controllers
         [Route("MyAccount")]
         public IActionResult DeleteMyAccount()
         {
-            int idSocio = 0;
+            UsuariosSocio usuariosSocio = new UsuariosSocio();
             if (!string.IsNullOrEmpty(this.HttpContext.Request.Headers["Authorization"]) && this.HttpContext.Request.Headers["Authorization"].ToString().StartsWith("Bearer "))
             {
                 string Token = this.HttpContext.Request.Headers["Authorization"].ToString().Substring("Bearer ".Length);
-                idSocio = _auth.FuncionMagica(Token);
+                usuariosSocio = _auth.FuncionMagica(Token);
             }
             
-            if(idSocio != 0)
+            if(usuariosSocio.Idsocio != 0)
             {
-                var socioToDelete = _auth.GetById(idSocio);
+                var socioToDelete = _auth.GetById(usuariosSocio.Idsocio);
 
                 if(socioToDelete is not null)
                 {
-                    _auth.Delete(idSocio);
+                    _auth.Delete(usuariosSocio.Idsocio);
                     return Ok();
                 }
                 else
