@@ -51,7 +51,7 @@ public partial class TiendaBdContext : DbContext
 
         modelBuilder.Entity<DetallesVentum>(entity =>
         {
-            entity.HasKey(e => e.Iddetalleventa).HasName("PK__Detalles__4EA18098FC6A9552");
+            entity.HasKey(e => e.Iddetalleventa).HasName("PK__Detalles__4EA1809852AB691A");
 
             entity.Property(e => e.Iddetalleventa).HasColumnName("iddetalleventa");
             entity.Property(e => e.Cantidad).HasColumnName("cantidad");
@@ -64,12 +64,12 @@ public partial class TiendaBdContext : DbContext
             entity.HasOne(d => d.IdproductoNavigation).WithMany(p => p.DetallesVenta)
                 .HasForeignKey(d => d.Idproducto)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__DetallesV__idpro__45BE5BA9");
+                .HasConstraintName("FK__DetallesV__idpro__531856C7");
 
             entity.HasOne(d => d.IdventaNavigation).WithMany(p => p.DetallesVenta)
                 .HasForeignKey(d => d.Idventa)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__DetallesV__idven__44CA3770");
+                .HasConstraintName("FK__DetallesV__idven__5224328E");
         });
 
         modelBuilder.Entity<Key>(entity =>
@@ -216,7 +216,7 @@ public partial class TiendaBdContext : DbContext
 
         modelBuilder.Entity<Venta>(entity =>
         {
-            entity.HasKey(e => e.Idventa).HasName("PK__Ventas__F82D1AFBE960B8F8");
+            entity.HasKey(e => e.Idventa).HasName("PK__Ventas__F82D1AFBEECA9BA7");
 
             entity.Property(e => e.Idventa).HasColumnName("idventa");
             entity.Property(e => e.Estatus)
@@ -225,12 +225,13 @@ public partial class TiendaBdContext : DbContext
             entity.Property(e => e.Fechaventa)
                 .HasColumnType("date")
                 .HasColumnName("fechaventa");
+            entity.Property(e => e.Idstripe).HasColumnName("idstripe");
             entity.Property(e => e.Idusuariosocio).HasColumnName("idusuariosocio");
 
             entity.HasOne(d => d.IdusuariosocioNavigation).WithMany(p => p.Venta)
                 .HasForeignKey(d => d.Idusuariosocio)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Ventas__idusuari__41EDCAC5");
+                .HasConstraintName("FK__Ventas__idusuari__4F47C5E3");
         });
 
         OnModelCreatingPartial(modelBuilder);

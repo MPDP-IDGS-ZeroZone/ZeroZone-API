@@ -7,6 +7,8 @@ public partial class Venta
 {
     public int Idventa { get; set; }
 
+    public string Idstripe { get; set; } = null!;
+
     public int Idusuariosocio { get; set; }
 
     public DateTime Fechaventa { get; set; }

@@ -6,8 +6,9 @@ using ApiTienda.Data.Request;
 using ApiTienda.Data.Response;
 namespace ApiTienda.Services;
 
+using System.Runtime.InteropServices;
 using Microsoft.AspNetCore.Mvc.TagHelpers.Cache;
-
+using Microsoft.EntityFrameworkCore;
 using Stripe;
 using Stripe.Checkout;
 
@@ -20,7 +21,7 @@ public class VentaService
         _context = context;
     }
 
-    public string createCheckoutSession (VentaRequest newVenta, UsuariosSocio usuariosocio)
+    public async Task<string> createCheckoutSession (VentaRequest newVenta, UsuariosSocio usuariosocio)
     {
         var detallesventa = newVenta.DetallesVenta;
 
@@ -39,7 +40,7 @@ public class VentaService
                       Producto = producto
                   }).ToList();
         
-        var domain = "http://localhost:4242";
+        var domain = "http://localhost:5240";
 
         var lineItems = new List<SessionLineItemOptions>();
         foreach (var detalles in DetallesVenta)
@@ -80,11 +81,63 @@ public class VentaService
             }
         };
 
+        DateTime currentDateTime = DateTime.UtcNow;
+        DateTime expirationTime = currentDateTime.AddMinutes(30);
+
+        options.ExpiresAt = expirationTime;
+
         var service = new SessionService();
         Session session = service.Create(options);
 
-        return session.Url;
+        await CreateVentaAsync(usuariosocio.Idusuariosocio, session.Id);
+        foreach (var detalles in DetallesVenta)
+        {
+            await CreateDetallesVentasAsync(detalles.Producto.Idproducto, detalles.Cantidad, detalles.Producto.Precio, session.Id);
+        }
 
+        return session.Url;
+    }
+    public void EmailCustomerAboutFailedPayment(Session session) {
+      // TODO: fill me in
     }
 
+    public async Task FulfillOrderAsync(Session session, string status) {
+        string idStripe = session.Id;
+        var venta = await _context.Ventas.FirstAsync(v => v.Idstripe == idStripe);
+
+        if (venta != null)
+        {
+            venta.Estatus = status;
+            await _context.SaveChangesAsync();
+        }
+    }
+
+    public async Task CreateVentaAsync(int Idusuariosocio, string Idstripe) {
+        var nuevaVenta = new Venta
+        {
+            Idstripe = Idstripe,
+            Idusuariosocio = Idusuariosocio,
+            Fechaventa = DateTime.Now,
+            Estatus = "Pendiente"
+        };
+
+        _context.Ventas.Add(nuevaVenta);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task CreateDetallesVentasAsync(int idProducto, int cantidad, decimal precioUnitario, string idStripe) {
+        var nuevaVenta = await _context.Ventas.FirstAsync(v => v.Idstripe == idStripe);
+        int idVentaGenerado = nuevaVenta.Idventa;
+
+        var detalleVenta = new DetallesVentum
+        {
+            Idventa = idVentaGenerado,
+            Idproducto = idProducto,
+            Cantidad = cantidad,
+            Preciounitario = precioUnitario
+        };
+
+        _context.DetallesVenta.Add(detalleVenta);
+        await _context.SaveChangesAsync();
+    }
 }
