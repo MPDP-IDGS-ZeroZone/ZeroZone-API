@@ -67,7 +67,12 @@ public class ProductoService
             Precio = p.Precio,
             Foto = p.Foto ?? "",
             FechaCreacion = p.FechaCreacion,
-            Categoria = p.IdcategoriaNavigation,
+            Categoria = _context.Categorias.Where(Categoria => Categoria.Idcategoria == p.Idcategoria).Select(c => new CategoriaResponse
+            {
+                Idcategoria = c.Idcategoria,
+                Nombre = c.Nombre,
+                Foto = c.Foto
+            }).First(),
             Tipo = p.Tipo,
             Stock = p.Stock,
             Statusp = p.Statusp,
@@ -83,8 +88,9 @@ public class ProductoService
         return producto;
     }
 
-    public Producto Create(ProductoRequest newProducto, int idUsuarioSocio)
+    public ProductoResponse Create(ProductoRequest newProducto, int idUsuarioSocio)
     {
+
         Producto producto = new Producto();
         producto.Idusuariosocio = idUsuarioSocio;
         producto.Nombre = newProducto.Nombre;
@@ -100,7 +106,29 @@ public class ProductoService
         _context.Productos.Add(producto);
         _context.SaveChanges();
 
-        return producto;
+        UsuariosSocio usuariosSocio = _context.UsuariosSocios.Where(UsuariosSocio => UsuariosSocio.Idusuariosocio == idUsuarioSocio).First();
+        CategoriaResponse categoria = _context.Categorias.Where(Categoria => Categoria.Idcategoria == producto.Idcategoria).Select(c => new CategoriaResponse
+        {
+            Idcategoria = c.Idcategoria,
+            Nombre = c.Nombre,
+            Foto = c.Foto
+        }).First();
+
+        ProductoResponse response = new ProductoResponse
+        {
+            Socio = usuariosSocio.IdsocioNavigation,
+            Nombre = producto.Nombre,
+            Descripcion = producto.Descripcion,
+            Precio = producto.Precio,
+            Foto = producto.Foto,
+            FechaCreacion = producto.FechaCreacion,
+            Categoria = categoria,
+            Tipo = producto.Tipo,
+            Stock = producto.Stock,
+            Statusp = producto.Statusp
+        };
+        
+        return response;
     }
 
     public void Update(int Id, ProductoRequest producto)

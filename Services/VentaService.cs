@@ -21,7 +21,7 @@ public class VentaService
         _context = context;
     }
 
-    public async Task<string> createCheckoutSession (VentaRequest newVenta, UsuariosSocio usuariosocio)
+    public async Task<string> createCheckoutSession (VentaRequest newVenta, UsuariosSocioResponse usuariosocio)
     {
         var detallesventa = newVenta.DetallesVenta;
 
@@ -40,7 +40,7 @@ public class VentaService
                       Producto = producto
                   }).ToList();
         
-        var domain = "http://localhost:5240";
+        var domain = "http://localhost:3000";
 
         var lineItems = new List<SessionLineItemOptions>();
         foreach (var detalles in DetallesVenta)
@@ -72,8 +72,8 @@ public class VentaService
         {
             LineItems = lineItems, // Agregar la lista de line items creada
             Mode = "payment",
-            SuccessUrl = domain + "/success",
-            CancelUrl = domain + "/cancel",
+            SuccessUrl = domain + "/Home",
+            CancelUrl = domain + "/Home",
             CustomerEmail = usuariosocio.Mail,
             Metadata = new Dictionary<string, string>
             {

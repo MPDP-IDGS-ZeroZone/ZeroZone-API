@@ -25,7 +25,7 @@ namespace ApiTienda.Data.Response
 
         public DateTime FechaCreacion { get; set; }
 
-        public Categoria Categoria { get; set; } = null!;
+        public CategoriaResponse Categoria { get; set; } = null!;
 
         public string Tipo { get; set; } = null!;
 

@@ -97,7 +97,7 @@ namespace TiendaAPI.Controllers
         [Route("MyAccount")]
         public ActionResult<IEnumerable<AccountResponse>> GetMyAccount()
         {
-            UsuariosSocio usuariosSocio = new UsuariosSocio();
+            UsuariosSocioResponse usuariosSocio = new UsuariosSocioResponse();
             if (!string.IsNullOrEmpty(this.HttpContext.Request.Headers["Authorization"]) && this.HttpContext.Request.Headers["Authorization"].ToString().StartsWith("Bearer "))
             {
                 string Token = this.HttpContext.Request.Headers["Authorization"].ToString().Substring("Bearer ".Length);
@@ -123,7 +123,7 @@ namespace TiendaAPI.Controllers
         [Route("MyAccount")]
         public IActionResult UpdateMyAccount(Account Account)
         {
-            UsuariosSocio usuariosSocio = new UsuariosSocio();
+            UsuariosSocioResponse usuariosSocio = new UsuariosSocioResponse();
             if (!string.IsNullOrEmpty(this.HttpContext.Request.Headers["Authorization"]) && this.HttpContext.Request.Headers["Authorization"].ToString().StartsWith("Bearer "))
             {
                 string Token = this.HttpContext.Request.Headers["Authorization"].ToString().Substring("Bearer ".Length);
@@ -154,7 +154,7 @@ namespace TiendaAPI.Controllers
         [Route("MyAccount")]
         public IActionResult DeleteMyAccount()
         {
-            UsuariosSocio usuariosSocio = new UsuariosSocio();
+            UsuariosSocioResponse usuariosSocio = new UsuariosSocioResponse();
             if (!string.IsNullOrEmpty(this.HttpContext.Request.Headers["Authorization"]) && this.HttpContext.Request.Headers["Authorization"].ToString().StartsWith("Bearer "))
             {
                 string Token = this.HttpContext.Request.Headers["Authorization"].ToString().Substring("Bearer ".Length);

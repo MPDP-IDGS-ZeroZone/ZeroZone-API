@@ -1,6 +1,8 @@
 using ApiTienda.Data;
 using ApiTienda.Data.Models;
 using ApiTienda.Data.Request;
+using ApiTienda.Data.Response;
+
 namespace ApiTienda.Services;
 
 public class CategoriaService
@@ -12,7 +14,7 @@ public class CategoriaService
         _context = context;
     }
 
-    public IEnumerable<Categoria> Get(int Id = 0, string Nombre = "", int Page = 1, int PageSize = 10)
+    public IEnumerable<CategoriaResponse> Get(int Id = 0, string Nombre = "", int Page = 1, int PageSize = 10)
     {
         IQueryable<Categoria> categoriaQuery = _context.Categorias.AsQueryable();
 
@@ -29,7 +31,14 @@ public class CategoriaService
         int skipAmount = (Page - 1) * PageSize;
         categoriaQuery = categoriaQuery.Skip(skipAmount).Take(PageSize);
 
-        return categoriaQuery.ToList();
+        List<CategoriaResponse> categorias = categoriaQuery.Select(c => new CategoriaResponse
+        {
+            Idcategoria = c.Idcategoria,
+            Nombre = c.Nombre,
+            Foto = c.Foto
+        }).ToList();
+
+        return categorias;
     }
     
     public Categoria GetById(int Id)

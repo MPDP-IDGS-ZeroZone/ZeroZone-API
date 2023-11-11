@@ -2,6 +2,7 @@ using System;
 using ApiTienda.Data;
 using ApiTienda.Data.Models;
 using ApiTienda.Data.Request;
+using ApiTienda.Data.Response;
 namespace ApiTienda.Services;
 
 public class OfertaService
@@ -13,7 +14,7 @@ public class OfertaService
         _context = context;
     }
 
-    public IEnumerable<Oferta> Get(int Id = 0, int Producto = 0, DateTime? FechaInicio = null, DateTime? FechaCierre = null, bool ActivaOnly = false, int Page = 1, int PageSize = 10)
+    public IEnumerable<OfertaResponse> Get(int Id = 0, int Producto = 0, DateTime? FechaInicio = null, DateTime? FechaCierre = null, bool ActivaOnly = false, int Page = 1, int PageSize = 10)
     {
         IQueryable<Oferta> ofertaQuery = _context.Ofertas.AsQueryable();
 
@@ -45,7 +46,17 @@ public class OfertaService
         int skipAmount = (Page - 1) * PageSize;
         ofertaQuery = ofertaQuery.Skip(skipAmount).Take(PageSize);
 
-        return ofertaQuery.ToList();
+        List<OfertaResponse> ofertas = ofertaQuery.Select(o => new OfertaResponse
+        {
+            Idoferta = o.Idoferta,
+            Idproducto = o.Idproducto,
+            Porcentaje = o.Porcentaje,
+            Fechainicio = o.Fechainicio,
+            Fechacierre = o.Fechacierre,
+            Estatus = o.Estatus 
+        }).ToList();
+
+        return ofertas;
     }
     
     public Oferta GetById(int Id)

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Cors;
 using Stripe;
 using Stripe.Checkout;
 using System.ComponentModel.Design;
+using ApiTienda.Data.Response;
 
 namespace ApiTienda.Controllers
 {
@@ -28,9 +29,9 @@ namespace ApiTienda.Controllers
         [HttpPost]
         [Authorize]
         [Route("[controller]")]
-        public async Task<IActionResult> Create(VentaRequest newVenta)
+        public async Task<IActionResult> Create(VentaRequest newVenta, bool redirect = true)
         {
-            UsuariosSocio usuariosSocio = new UsuariosSocio();
+            UsuariosSocioResponse usuariosSocio = new UsuariosSocioResponse();
             if (!string.IsNullOrEmpty(this.HttpContext.Request.Headers["Authorization"]) && this.HttpContext.Request.Headers["Authorization"].ToString().StartsWith("Bearer "))
             {
                 string Token = this.HttpContext.Request.Headers["Authorization"].ToString().Substring("Bearer ".Length);
@@ -39,10 +40,13 @@ namespace ApiTienda.Controllers
             
             if(usuariosSocio.Idusuariosocio != 0){
                 var Url = await _service.createCheckoutSession(newVenta, usuariosSocio);
+                if(redirect){
+                    Response.Headers.Add("Location", Url);
+                    return new StatusCodeResult(303);
+                }else{
+                    return Ok(Url);
+                }
                 
-                //Response.Headers.Add("Location", Url);
-                //return new StatusCodeResult(303);
-                return Ok(Url);
             }else{
                 return BadRequest(new{Error = "La funcion magica no funciono correctamente"});
             }
@@ -54,7 +58,7 @@ namespace ApiTienda.Controllers
         {
             try
             {
-                const string secret = "whsec_b2cf9f62cc70012836b45aba4b0ff2791f642b198f387c771fb0810ac1a74b75";
+                const string secret = "whsec_c8wYmykQrxekIRzpMYOrYmiHMZE6vV1v";
                 var json = await new StreamReader(HttpContext.Request.Body).ReadToEndAsync();
 
                 var stripeEvent = EventUtility.ConstructEvent(
@@ -105,6 +109,18 @@ namespace ApiTienda.Controllers
             {
                 return BadRequest(e);
             }
+        }
+
+        [HttpGet]
+        [Route("success")]
+        public IActionResult Success(){
+            return Ok("Success");
+        }
+
+        [HttpGet]
+        [Route("cancel")]
+        public IActionResult Cancel(){
+            return Ok("Cancel");
         }
     }
 }

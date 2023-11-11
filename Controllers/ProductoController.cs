@@ -5,6 +5,7 @@ using ApiTienda.Data.Request;
 using Microsoft.AspNetCore.Authorization;
 using TiendaAPI.Services;
 using Microsoft.AspNetCore.Cors;
+using ApiTienda.Data.Response;
 
 namespace ApiTienda.Controllers
 {
@@ -36,7 +37,7 @@ namespace ApiTienda.Controllers
         [Authorize]
         public IActionResult Create(ProductoRequest producto)
         {
-            UsuariosSocio usuariosSocio = new UsuariosSocio();
+            UsuariosSocioResponse usuariosSocio = new UsuariosSocioResponse();
             if (!string.IsNullOrEmpty(this.HttpContext.Request.Headers["Authorization"]) && this.HttpContext.Request.Headers["Authorization"].ToString().StartsWith("Bearer "))
             {
                 string Token = this.HttpContext.Request.Headers["Authorization"].ToString().Substring("Bearer ".Length);

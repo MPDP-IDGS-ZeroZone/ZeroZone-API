@@ -37,7 +37,7 @@ namespace TiendaAPI.Services
             return new {Token = token};
         }
 
-        public UsuariosSocio FuncionMagica(string Token){
+        public UsuariosSocioResponse FuncionMagica(string Token){
             int Id = 0;
             
             if(Token != ""){
@@ -46,7 +46,15 @@ namespace TiendaAPI.Services
             
                 Id = Convert.ToInt32(token.Claims.First( c => c.Type == ClaimTypes.Actor).Value);
             }
-            var UsuarioSocio = _context.UsuariosSocios.Where(UsuariosSocio => UsuariosSocio.Idsocio == Id).First();
+            UsuariosSocioResponse UsuarioSocio = _context.UsuariosSocios.Where(UsuariosSocio => UsuariosSocio.Idsocio == Id).Select(p => new UsuariosSocioResponse
+            {
+                Idusuariosocio = p.Idusuariosocio,
+                Pasword = p.Pasword,
+                Rol = p.Rol,
+                Mail = p.Mail,
+                Idsocio = p.Idsocio
+            }).First();
+
             return UsuarioSocio;
         }
 
