@@ -9,13 +9,15 @@ public partial class Producto
 
     public int Idusuariosocio { get; set; }
 
+    public int Idplataforma { get; set; }
+
     public string Nombre { get; set; } = null!;
 
     public string Descripcion { get; set; } = null!;
 
     public decimal Precio { get; set; }
 
-    public string? Foto { get; set; }
+    public string Foto { get; set; } = null!;
 
     public DateTime FechaCreacion { get; set; }
 
@@ -27,13 +29,11 @@ public partial class Producto
 
     public string Statusp { get; set; } = null!;
 
-    public int? Idplataforma { get; set; }
-
     public virtual ICollection<DetallesVentum> DetallesVenta { get; set; } = new List<DetallesVentum>();
 
     public virtual Categoria IdcategoriaNavigation { get; set; } = null!;
 
-    public virtual Plataforma? IdplataformaNavigation { get; set; }
+    public virtual Plataforma IdplataformaNavigation { get; set; } = null!;
 
     public virtual UsuariosSocio IdusuariosocioNavigation { get; set; } = null!;
 

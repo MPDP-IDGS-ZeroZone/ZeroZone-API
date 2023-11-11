@@ -15,9 +15,9 @@ namespace TiendaAPI.Services
 {
     public class AuthService
     {
-        private readonly TiendaBdContext _context;
+        private readonly ProtibleDbContext _context;
 
-        public AuthService (TiendaBdContext context)
+        public AuthService (ProtibleDbContext context)
         {
             _context = context;
         }

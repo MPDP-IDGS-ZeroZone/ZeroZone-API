@@ -54,7 +54,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 });
 
 //DbContext
-builder.Services.AddSqlServer<TiendaBdContext>(builder.Configuration.GetConnectionString("TiendaConnection"));
+builder.Services.AddSqlServer<ProtibleDbContext>(builder.Configuration.GetConnectionString("TiendaConnection"));
 
 //Stripe
 StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];

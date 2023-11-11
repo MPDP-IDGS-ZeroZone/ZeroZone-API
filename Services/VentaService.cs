@@ -14,9 +14,9 @@ using Stripe.Checkout;
 
 public class VentaService
 {
-    private readonly TiendaBdContext _context;
+    private readonly ProtibleDbContext _context;
 
-    public VentaService(TiendaBdContext context)
+    public VentaService(ProtibleDbContext context)
     {
         _context = context;
     }

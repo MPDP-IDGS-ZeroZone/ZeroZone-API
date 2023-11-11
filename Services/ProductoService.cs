@@ -6,9 +6,9 @@ namespace ApiTienda.Services;
 
 public class ProductoService
 {
-    private readonly TiendaBdContext _context;
+    private readonly ProtibleDbContext _context;
 
-    public ProductoService(TiendaBdContext context)
+    public ProductoService(ProtibleDbContext context)
     {
         _context = context;
     }

@@ -7,9 +7,9 @@ namespace ApiTienda.Services;
 
 public class CategoriaService
 {
-    private readonly TiendaBdContext _context;
+    private readonly ProtibleDbContext _context;
 
-    public CategoriaService(TiendaBdContext context)
+    public CategoriaService(ProtibleDbContext context)
     {
         _context = context;
     }
