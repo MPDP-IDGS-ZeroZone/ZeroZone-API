@@ -11,5 +11,7 @@ public partial class Categoria
 
     public string Foto { get; set; } = null!;
 
+    public string Estatus { get; set; } = null!;
+
     public virtual ICollection<Producto> Productos { get; set; } = new List<Producto>();
 }

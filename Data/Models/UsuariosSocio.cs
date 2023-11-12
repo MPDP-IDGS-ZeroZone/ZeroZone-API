@@ -15,6 +15,8 @@ public partial class UsuariosSocio
 
     public int Idsocio { get; set; }
 
+    public string Estatus { get; set; } = null!;
+
     public virtual Socio IdsocioNavigation { get; set; } = null!;
 
     public virtual ICollection<Producto> Productos { get; set; } = new List<Producto>();

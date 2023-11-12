@@ -156,7 +156,7 @@ public class ProductoService
 
         if (ProductoToDelete is not null)
         {
-            _context.Productos.Remove(ProductoToDelete);
+            ProductoToDelete.Statusp = "Eliminado";
             _context.SaveChanges();
         }
     }

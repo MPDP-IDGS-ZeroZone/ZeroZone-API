@@ -101,7 +101,7 @@ public class OfertaService
 
         if (OfertaToDelete is not null)
         {
-            _context.Ofertas.Remove(OfertaToDelete);
+            OfertaToDelete.Estatus = "Eliminado";
             _context.SaveChanges();
         }
     }

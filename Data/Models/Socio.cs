@@ -13,5 +13,7 @@ public partial class Socio
 
     public DateTime FechaNacimiento { get; set; }
 
+    public string Estatus { get; set; } = null!;
+
     public virtual ICollection<UsuariosSocio> UsuariosSocios { get; set; } = new List<UsuariosSocio>();
 }

@@ -78,7 +78,7 @@ public class CategoriaService
 
         if (CategoriaToDelete is not null)
         {
-            _context.Categorias.Remove(CategoriaToDelete);
+            CategoriaToDelete.Estatus = "Eliminado";
             _context.SaveChanges();
         }
     }

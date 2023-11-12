@@ -212,18 +212,18 @@ namespace TiendaAPI.Services
 
             if (SocioToDelete is not null)
             {
-                _context.Socios.Remove(SocioToDelete);
+                SocioToDelete.Estatus = "Eliminado"; // Actualiza el campo de estado
                 _context.SaveChanges();
             }
         }
 
         public void DeleteUsuarioSocio(int Id)
         {
-            var SocioToDelete = GetByIdUsuarioSocio(Id);
+            var UsuarioSocioToDelete = GetByIdUsuarioSocio(Id);
 
-            if (SocioToDelete is not null)
+            if (UsuarioSocioToDelete is not null)
             {
-                _context.UsuariosSocios.Remove(SocioToDelete);
+                UsuarioSocioToDelete.Estatus = "Eliminado"; // Actualiza el campo de estado
                 _context.SaveChanges();
             }
         }

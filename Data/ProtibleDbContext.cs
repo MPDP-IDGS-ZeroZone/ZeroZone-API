@@ -41,6 +41,10 @@ public partial class ProtibleDbContext : DbContext
             entity.HasKey(e => e.Idcategoria).HasName("PK__Categori__140587C72DF0515A");
 
             entity.Property(e => e.Idcategoria).HasColumnName("idcategoria");
+            entity.Property(e => e.Estatus)
+                .HasMaxLength(20)
+                .HasDefaultValueSql("('Activo')")
+                .HasColumnName("estatus");
             entity.Property(e => e.Foto)
                 .IsUnicode(false)
                 .HasColumnName("foto");
@@ -185,6 +189,10 @@ public partial class ProtibleDbContext : DbContext
             entity.Property(e => e.Apellidos)
                 .HasMaxLength(70)
                 .HasColumnName("apellidos");
+            entity.Property(e => e.Estatus)
+                .HasMaxLength(20)
+                .HasDefaultValueSql("('Activo')")
+                .HasColumnName("estatus");
             entity.Property(e => e.FechaNacimiento)
                 .HasColumnType("date")
                 .HasColumnName("fecha_nacimiento");
@@ -200,6 +208,10 @@ public partial class ProtibleDbContext : DbContext
             entity.ToTable("Usuarios_socios");
 
             entity.Property(e => e.Idusuariosocio).HasColumnName("idusuariosocio");
+            entity.Property(e => e.Estatus)
+                .HasMaxLength(20)
+                .HasDefaultValueSql("('Activo')")
+                .HasColumnName("estatus");
             entity.Property(e => e.Idsocio).HasColumnName("idsocio");
             entity.Property(e => e.Mail)
                 .HasMaxLength(50)
