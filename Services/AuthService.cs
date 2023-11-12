@@ -101,8 +101,15 @@ namespace TiendaAPI.Services
 
             List<AccountResponse> response = SocioQuery.Select(p => new AccountResponse
             {
-                Socio = p.IdsocioNavigation,
-                UsuariosSocio = p
+                Idsocio = p.Idsocio,
+                Idusuariosocio = p.Idusuariosocio,
+                Nombre = p.IdsocioNavigation.Nombre,
+                Apellidos = p.IdsocioNavigation.Apellidos,
+                FechaNacimiento = p.IdsocioNavigation.FechaNacimiento,
+                Pasword = p.Pasword,
+                Rol = p.Rol,
+                Mail = p.Mail,
+                Estatus = p.Estatus
             }).ToList();
 
             return response;
@@ -115,8 +122,15 @@ namespace TiendaAPI.Services
 
             List<AccountResponse> response = SocioQuery.Select(p => new AccountResponse
             {
-                Socio = p.IdsocioNavigation,
-                UsuariosSocio = p
+                Idsocio = p.Idsocio,
+                Idusuariosocio = p.Idusuariosocio,
+                Nombre = p.IdsocioNavigation.Nombre,
+                Apellidos = p.IdsocioNavigation.Apellidos,
+                FechaNacimiento = p.IdsocioNavigation.FechaNacimiento,
+                Pasword = p.Pasword,
+                Rol = p.Rol,
+                Mail = p.Mail,
+                Estatus = p.Estatus
             }).ToList();
 
             return response.First();
@@ -170,9 +184,18 @@ namespace TiendaAPI.Services
             var Socio = CreateSocio(newAccount);
             var UsuariosSocio = CreateUsuariosSocio(newAccount,Socio.Idsocio);
 
-            AccountResponse AccountResponse = new AccountResponse();            
-            AccountResponse.Socio = Socio;
-            AccountResponse.UsuariosSocio = UsuariosSocio;
+            AccountResponse AccountResponse = new AccountResponse
+            {
+                Idsocio = Socio.Idsocio,
+                Idusuariosocio = UsuariosSocio.Idusuariosocio,
+                Nombre = Socio.Nombre,
+                Apellidos = Socio.Apellidos,
+                FechaNacimiento = Socio.FechaNacimiento,
+                Pasword = UsuariosSocio.Pasword,
+                Rol = UsuariosSocio.Rol,
+                Mail = UsuariosSocio.Mail,
+                Estatus = UsuariosSocio.Estatus
+            };
 
             return AccountResponse;
         }

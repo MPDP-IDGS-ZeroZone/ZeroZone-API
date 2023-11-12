@@ -9,8 +9,22 @@ namespace ApiTienda.Data.Response
 {
     public class AccountResponse
     {
-        public Socio Socio { get; set; } = null!;
+        public int Idsocio { get; set; }
 
-        public UsuariosSocio UsuariosSocio { get; set; } = null!;
+        public int Idusuariosocio { get; set; }
+
+        public string Nombre { get; set; } = null!;
+
+        public string Apellidos { get; set; } = null!;
+
+        public DateTime FechaNacimiento { get; set; }
+        
+        public string Pasword { get; set; } = null!;
+
+        public string Rol { get; set; } = null!;
+
+        public string Mail { get; set; } = null!;
+
+        public string Estatus { get; set; } = null!;
     }
 }

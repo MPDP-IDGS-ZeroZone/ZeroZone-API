@@ -53,7 +53,7 @@ namespace TiendaAPI.Controllers
         public IActionResult CreateAccount(Account Account)
         {
             var newAccount = _auth.Create(Account);
-            return CreatedAtAction(nameof(Get), new {Id = newAccount.Socio.Idsocio}, newAccount);
+            return CreatedAtAction(nameof(Get), new {Id = newAccount.Idsocio}, newAccount);
         }
 
         [HttpPut]
