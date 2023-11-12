@@ -38,9 +38,9 @@ namespace TiendaAPI.Controllers
         [HttpGet]
         [Authorize]
         [Route("Account")]
-        public ActionResult<IEnumerable<AccountResponse>> Get(int Id = 0, int Page = 1, int PageSize = 10)
+        public ActionResult<IEnumerable<AccountResponse>> Get(int Id = 0, string Estatus = "", int Page = 1, int PageSize = 10)
         {
-            var AccountResponse = _auth.Get(Id, Page, PageSize);
+            var AccountResponse = _auth.Get(Id, Estatus, Page, PageSize);
             
             if (AccountResponse is null){
                 return NotFound();

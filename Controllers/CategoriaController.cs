@@ -17,9 +17,9 @@ namespace ApiTienda.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Categoria>> Get(int Id = 0, string Nombre = "", int Page = 1, int PageSize = 10)
+        public ActionResult<IEnumerable<Categoria>> Get(int Id = 0, string Nombre = "", string Estatus = "", int Page = 1, int PageSize = 10)
         {
-            var Categoria = _service.Get(Id, Nombre, Page, PageSize);
+            var Categoria = _service.Get(Id, Nombre, Estatus, Page, PageSize);
             
             if (Categoria is null){
                 return NotFound();

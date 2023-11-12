@@ -82,13 +82,18 @@ namespace TiendaAPI.Services
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        public IEnumerable<AccountResponse> Get(int Id = 0, int Page = 1, int PageSize = 10)
+        public IEnumerable<AccountResponse> Get(int Id = 0, string Estatus = "", int Page = 1, int PageSize = 10)
         {
             IQueryable<UsuariosSocio> SocioQuery = _context.UsuariosSocios.AsQueryable();
 
             if (Id != 0)
             {
                 SocioQuery = SocioQuery.Where(c => c.Idsocio == Id);
+            }
+
+            if (!string.IsNullOrEmpty(Estatus))
+            {
+                SocioQuery = SocioQuery.Where(c => c.Estatus == Estatus);
             }
 
             int skipAmount = (Page - 1) * PageSize;

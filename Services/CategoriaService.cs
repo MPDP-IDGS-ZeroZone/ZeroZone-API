@@ -14,7 +14,7 @@ public class CategoriaService
         _context = context;
     }
 
-    public IEnumerable<CategoriaResponse> Get(int Id = 0, string Nombre = "", int Page = 1, int PageSize = 10)
+    public IEnumerable<CategoriaResponse> Get(int Id = 0, string Nombre = "", string Estatus = "", int Page = 1, int PageSize = 10)
     {
         IQueryable<Categoria> categoriaQuery = _context.Categorias.AsQueryable();
 
@@ -26,6 +26,11 @@ public class CategoriaService
         if (!string.IsNullOrEmpty(Nombre))
         {
             categoriaQuery = categoriaQuery.Where(c => c.Nombre.StartsWith(Nombre));
+        }
+        
+        if (!string.IsNullOrEmpty(Estatus))
+        {
+            categoriaQuery = categoriaQuery.Where(c => c.Estatus == Estatus);
         }
 
         int skipAmount = (Page - 1) * PageSize;
