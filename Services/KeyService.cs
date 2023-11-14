@@ -16,7 +16,7 @@ namespace ApiTienda.Services
             _context = context;
         }
 
-        public IEnumerable<Key> Get(int Id = 0, int IdProducto = 0, string Estatus = "", int Page = 1, int PageSize = 10)
+        public IEnumerable<KeyResponse> Get(int Id = 0, int IdProducto = 0, string Estatus = "", int Page = 1, int PageSize = 10)
         {
             IQueryable<Key> keyQuery = _context.Keys.AsQueryable();
 
@@ -38,7 +38,15 @@ namespace ApiTienda.Services
             int skipAmount = (Page - 1) * PageSize;
             keyQuery = keyQuery.Skip(skipAmount).Take(PageSize);
 
-            return keyQuery.ToList();
+            List<KeyResponse> plataformas = keyQuery.Select(p => new KeyResponse
+            {
+                Idkey = p.Idkey,
+                Idproducto = p.Idproducto,
+                Keyproducto = p.Keyproducto,
+                Estatus = p.Estatus
+            }).ToList();
+
+            return plataformas;
         }
 
         public Key GetById(int Id)
