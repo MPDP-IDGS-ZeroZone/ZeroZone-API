@@ -32,7 +32,7 @@ namespace ApiTienda.Controllers
         public IActionResult Create(OfertaRequest Oferta)
         {
             var newOferta = _service.Create(Oferta);
-            return CreatedAtAction(nameof(Get), new {Id = newOferta.Idoferta}, newOferta);
+            return Ok(newOferta);
         }
 
         [HttpPut]

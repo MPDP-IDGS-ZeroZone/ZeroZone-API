@@ -61,6 +61,7 @@ public class ProductoService
         {
             Idproducto = p.Idproducto,
             Idusuariosocio = p.Idusuariosocio,
+            Idplataforma = p.Idplataforma,
             Socio = p.IdusuariosocioNavigation.IdsocioNavigation,
             Nombre = p.Nombre,
             Descripcion = p.Descripcion,
@@ -88,47 +89,44 @@ public class ProductoService
         return producto;
     }
 
-    public ProductoResponse Create(ProductoRequest newProducto, int idUsuarioSocio)
+    public MsgResponse Create(ProductoRequest newProducto, int idUsuarioSocio)
     {
 
-        Producto producto = new Producto();
-        producto.Idusuariosocio = idUsuarioSocio;
-        producto.Nombre = newProducto.Nombre;
-        producto.Descripcion = newProducto.Descripcion;
-        producto.Precio = newProducto.Precio;
-        producto.Foto = newProducto.Foto;
-        producto.FechaCreacion = DateTime.Now;
-        producto.Idcategoria = newProducto.IdCategoria;
-        producto.Tipo = newProducto.Tipo;
-        producto.Stock = newProducto.Stock;
-        producto.Statusp = newProducto.Statusp;
+        Producto producto = new Producto{
+            Idusuariosocio = idUsuarioSocio,
+            Nombre = newProducto.Nombre,
+            Descripcion = newProducto.Descripcion,
+            Precio = newProducto.Precio,
+            Foto = newProducto.Foto,
+            FechaCreacion = DateTime.Now,
+            Idcategoria = newProducto.IdCategoria,
+            Tipo = newProducto.Tipo,
+            Stock = newProducto.Stock,
+            Statusp = newProducto.Statusp,
+            Idplataforma = newProducto.Idplataforma,
+        };
         
         _context.Productos.Add(producto);
         _context.SaveChanges();
 
-        UsuariosSocio usuariosSocio = _context.UsuariosSocios.Where(UsuariosSocio => UsuariosSocio.Idusuariosocio == idUsuarioSocio).First();
-        CategoriaResponse categoria = _context.Categorias.Where(Categoria => Categoria.Idcategoria == producto.Idcategoria).Select(c => new CategoriaResponse
+        foreach (var key in newProducto.Keys)
         {
-            Idcategoria = c.Idcategoria,
-            Nombre = c.Nombre,
-            Foto = c.Foto
-        }).First();
+            var nuevaKey = new Key
+            {
+                Idproducto = producto.Idproducto,
+                Keyproducto = key,
+                Estatus = "Disponible",
+            };
+            _context.Keys.Add(nuevaKey);
+        }
+        _context.SaveChanges();
 
-        ProductoResponse response = new ProductoResponse
-        {
-            Socio = usuariosSocio.IdsocioNavigation,
-            Nombre = producto.Nombre,
-            Descripcion = producto.Descripcion,
-            Precio = producto.Precio,
-            Foto = producto.Foto,
-            FechaCreacion = producto.FechaCreacion,
-            Categoria = categoria,
-            Tipo = producto.Tipo,
-            Stock = producto.Stock,
-            Statusp = producto.Statusp
+        var Response = new MsgResponse {
+            Id = producto.Idproducto,
+            Msg = "El producto se creo correctamente"
         };
         
-        return response;
+        return Response;
     }
 
     public void Update(int Id, ProductoRequest producto)

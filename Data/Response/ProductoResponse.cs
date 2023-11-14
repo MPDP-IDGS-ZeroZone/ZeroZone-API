@@ -13,6 +13,8 @@ namespace ApiTienda.Data.Response
 
         public int Idusuariosocio { get; set; }
 
+        public int Idplataforma { get; set; }
+
         public Socio Socio { get; set; } = null!;
 
         public string Nombre { get; set; } = null!;

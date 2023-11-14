@@ -45,8 +45,8 @@ namespace ApiTienda.Controllers
             }
             
             if(usuariosSocio.Idusuariosocio != 0){
-                var newProducto = _service.Create(producto, usuariosSocio.Idusuariosocio);
-                return CreatedAtAction(nameof(Get), new {Id = newProducto.Idproducto}, newProducto);
+                var msgResponse = _service.Create(producto, usuariosSocio.Idusuariosocio);
+                return Ok(msgResponse);
             }else{
                 return BadRequest(new{Error = "La funcion magica no funciono correctamente"});
             }

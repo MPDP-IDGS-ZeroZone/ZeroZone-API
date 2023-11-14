@@ -52,7 +52,7 @@ public class CategoriaService
         return Categoria;
     }
 
-    public Categoria Create(CategoriaRequest newCategoria)
+    public MsgResponse Create(CategoriaRequest newCategoria)
     {
         Categoria Categoria = new Categoria();
         Categoria.Nombre = newCategoria.Nombre;
@@ -61,7 +61,10 @@ public class CategoriaService
         _context.Categorias.Add(Categoria);
         _context.SaveChanges();
 
-        return Categoria;
+        return new MsgResponse{
+            Id = Categoria.Idcategoria,
+            Msg = "La categoria se creo correctamente"
+        };
     }
 
     public void Update(int Id, CategoriaRequest Categoria)

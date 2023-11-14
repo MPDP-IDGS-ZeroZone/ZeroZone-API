@@ -7,6 +7,8 @@ namespace ApiTienda.Data.Request
 {
     public class ProductoRequest
     {
+        public int Idplataforma {get; set;}
+        
         public string Nombre { get; set; } = null!;
 
         public string Descripcion { get; set; } = null!;
@@ -22,5 +24,7 @@ namespace ApiTienda.Data.Request
         public int Stock { get; set; }
 
         public string Statusp { get; set; } = null!;
+
+        public IEnumerable<string> Keys { get; set;} = new List<string>();
     }
 }

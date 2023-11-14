@@ -152,6 +152,11 @@ namespace TiendaAPI.Services
             return SocioQuery.First();
         }
 
+        public bool EmailExist(string email){
+            bool exists = _context.UsuariosSocios.Any(UsuariosSocio => UsuariosSocio.Mail == email);
+            return exists;
+        }
+
         public UsuariosSocio CreateUsuariosSocio(Account newAccount, int Idsocio)
         {
             UsuariosSocio UsuariosSocio = new UsuariosSocio();

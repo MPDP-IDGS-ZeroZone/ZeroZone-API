@@ -52,8 +52,12 @@ namespace TiendaAPI.Controllers
         [Route("Account")]
         public IActionResult CreateAccount(Account Account)
         {
-            var newAccount = _auth.Create(Account);
-            return CreatedAtAction(nameof(Get), new {Id = newAccount.Idsocio}, newAccount);
+            if(_auth.EmailExist(Account.Mail)){
+                return BadRequest("Este correo ya esta registrado");
+            } else{
+                var newAccount = _auth.Create(Account);
+                return CreatedAtAction(nameof(Get), new {Id = newAccount.Idsocio}, newAccount);
+            }
         }
 
         [HttpPut]

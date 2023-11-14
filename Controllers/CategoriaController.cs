@@ -32,7 +32,7 @@ namespace ApiTienda.Controllers
         public IActionResult Create(CategoriaRequest Categoria)
         {
             var newCategoria = _service.Create(Categoria);
-            return CreatedAtAction(nameof(Get), new {Id = newCategoria.Idcategoria}, newCategoria);
+            return Ok(newCategoria);
         }
 
         [HttpPut]

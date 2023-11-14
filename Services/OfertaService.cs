@@ -65,7 +65,7 @@ public class OfertaService
         return Oferta;
     }
 
-    public Oferta Create(OfertaRequest newOferta)
+    public MsgResponse Create(OfertaRequest newOferta)
     {
         Oferta Oferta = new Oferta();
         Oferta.Idproducto = newOferta.Idproducto;
@@ -77,7 +77,10 @@ public class OfertaService
         _context.Ofertas.Add(Oferta);
         _context.SaveChanges();
 
-        return Oferta;
+        return new MsgResponse{
+            Id = Oferta.Idoferta,
+            Msg = "oferta creada correctamente"
+        };
     }
 
     public void Update(int Id, OfertaRequest Oferta)
