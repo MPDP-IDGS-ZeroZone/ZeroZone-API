@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using System.Text;
 using ApiTienda.Data;
 using ApiTienda.Services;
@@ -65,6 +66,8 @@ builder.Services.AddScoped<OfertaService>();
 builder.Services.AddScoped<CategoriaService>();
 builder.Services.AddScoped<VentaService>();
 builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<PlataformaService>();
+builder.Services.AddScoped<KeyService>();
 
 var app = builder.Build();
 
