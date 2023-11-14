@@ -16,13 +16,18 @@ namespace ApiTienda.Services
             _context = context;
         }
 
-        public IEnumerable<Key> Get(int Id = 0, string Estatus = "", int Page = 1, int PageSize = 10)
+        public IEnumerable<Key> Get(int Id = 0, int IdProducto = 0, string Estatus = "", int Page = 1, int PageSize = 10)
         {
             IQueryable<Key> keyQuery = _context.Keys.AsQueryable();
 
             if (Id != 0)
             {
                 keyQuery = keyQuery.Where(k => k.Idkey == Id);
+            }
+
+            if (IdProducto != 0)
+            {
+                keyQuery = keyQuery.Where(k => k.Idproducto == IdProducto);
             }
 
             if (!string.IsNullOrEmpty(Estatus))

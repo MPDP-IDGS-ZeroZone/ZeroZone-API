@@ -18,9 +18,9 @@ namespace ApiTienda.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Key>> Get(int Id = 0, string Estatus = "", int Page = 1, int PageSize = 10)
+        public ActionResult<IEnumerable<Key>> Get(int Id = 0, int IdProducto = 0, string Estatus = "", int Page = 1, int PageSize = 10)
         {
-            var keys = _service.Get(Id, Estatus, Page, PageSize);
+            var keys = _service.Get(Id, IdProducto, Estatus, Page, PageSize);
 
             if (keys is null)
             {
@@ -28,7 +28,7 @@ namespace ApiTienda.Controllers
             }
             return Ok(keys);
         }
-
+        
         [HttpPost]
         [Authorize]
         public IActionResult Create(KeyRequest key)
